@@ -1,1 +1,0 @@
-Stangenmechanisme Walschaerts Valve Gear
