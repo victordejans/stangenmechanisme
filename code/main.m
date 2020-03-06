@@ -21,8 +21,8 @@ fig_kin_12bar = 0;        % draw figures of kinematic analysis if 1
 fig_dyn_12bar = 0;        % draw figures of dynamic analysis if 1
 
 %link lengths in cm and fixed angles in degrees
-r1a = ; %between joint A and E
-r2b = ; %between joint A and F
+r1a = 321; %between joint A and E
+r2b = 383; %between joint A and F
 r2a = 67; %between joint B and C
 r2b = 59; %between joint A and B
 r2c = 25; %between joint A and C
@@ -37,8 +37,8 @@ r8b = 150; %between joint K and M
 r8c = 50; %between joint J and K
 r10 = 156;
 r12 = 564;
-phiAE = ;
-phiAF = ;
+phiAE = deg2rad(21);
+phiAF = deg2rad(37);
 phiA = deg2rad(97.4598);
 phiB = deg2rad(21.7141);
 phiC = deg2rad(60.8261);
