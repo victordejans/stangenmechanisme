@@ -26,5 +26,5 @@ F(4) = r8a*sin(phi8+phiM)-r8c*sin(phi8+phiM+phiJ)-r8b*sin(phi8);
 F(5) = r2c*cos(phi2+phiA)+r3*cos(phi3)+r4*cos(phi4);
 F(6) = r2c*sin(phi2+phiA)+r3*sin(phi3)+r4*sin(phi4);
 %van knoop E naar knoop A langs driehoek8
-F(7) = -r6*cos(phi6)+r7*cos(phi7)-r8a*cos(phi8+phiM)-r10*cos(phi10)-r12*cos(phi12)-r2b*cos(phi2); 
-F(8) = -r6*sin(phi6)+r7*sin(phi7)-r8a*sin(phi8+phiM)-r10*sin(phi10)-r12*sin(phi12)-r2b*sin(phi2); 
+F(7) = -r6*cos(phi6)+r7*cos(phi7)-r8a*cos(phi8+phiM)-r10*cos(phi10)-r12*cos(phi12)-r2b*cos(phi2);
+F(8) = -r6*sin(phi6)+r7*sin(phi7)-r8a*sin(phi8+phiM)-r10*sin(phi10)-r12*sin(phi12)-r2b*sin(phi2);
