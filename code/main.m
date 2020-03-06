@@ -22,7 +22,7 @@ fig_dyn_12bar = 0;        % draw figures of dynamic analysis if 1
 
 %link lengths in cm and fixed angles in degrees
 r1a = 321; %between joint A and E
-r2b = 383; %between joint A and F
+r1b = 383; %between joint A and F
 r2a = 67; %between joint B and C
 r2b = 59; %between joint A and B
 r2c = 25; %between joint A and C
