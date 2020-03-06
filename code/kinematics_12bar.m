@@ -1,7 +1,6 @@
-function [phi3,phi4,phi6,phi7,phi8,phi10,phi12,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,...
-    ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12] = ...
-    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
+function [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
+    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
 % copy the vector each time we add an element).
@@ -12,6 +11,9 @@ phi7 = zeros(size(t));
 phi8 = zeros(size(t));
 phi10 = zeros(size(t));
 phi12 = zeros(size(t));
+x9 = zeros(size(t));
+x11 = zeros(size(t));
+r4a = zeros(size(t));
 dphi3 = zeros(size(t));
 dphi4 = zeros(size(t));
 dphi6 = zeros(size(t));
@@ -19,6 +21,9 @@ dphi7 = zeros(size(t));
 dphi8 = zeros(size(t));
 dphi10 = zeros(size(t));
 dphi12 = zeros(size(t));
+dx9 = zeros(size(t));
+dx11 = zeros(size(t));
+dr4a = zeros(size(t));
 ddphi3 = zeros(size(t));
 ddphi4 = zeros(size(t));
 ddphi6 = zeros(size(t));
@@ -26,6 +31,9 @@ ddphi7 = zeros(size(t));
 ddphi8 = zeros(size(t));
 ddphi10 = zeros(size(t));
 ddphi12 = zeros(size(t));
+ddx9 = zeros(size(t));
+ddx11 = zeros(size(t));
+ddr4a = zeros(size(t));
 
 % fsolve options (help fsolve, help optimset)
 optim_options = optimset('Display','off');
@@ -48,7 +56,7 @@ for k=1:t_size
         % return exitflag: indicates convergence of algorithm
 
         [x, fval, exitflag]=fsolve('loop_closure_eqs',[phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init...
-            phi12_init]',optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+            phi12_init,x9_init,x11_init,r4a_init]',optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
         if (exitflag ~= 1)
             display 'The fsolve exit flag was not 1, probably no convergence!'
             exitflag
@@ -61,7 +69,10 @@ for k=1:t_size
         phi7(k)=x(4);
         phi8(k)=x(5);
         phi10(k)=x(6);
-        phi12(k)=x(7);    
+        phi12(k)=x(7);
+        x9=x(8);
+        x11=x(9);
+        r4a=x(10);
     
     % *** velocity analysis ***
     
@@ -80,6 +91,9 @@ for k=1:t_size
         dphi8(k) = x(5);
         dphi10(k) = x(6);
         dphi12(k) = x(7);
+        dx9=x(8);
+        dx11=x(9);
+        dr4a=x(10);
     
     % *** acceleration analysis ***
     
@@ -98,7 +112,10 @@ for k=1:t_size
         ddphi8(k) = x(5);
         ddphi10(k) = x(6);
         ddphi12(k) = x(7);
-    
+        ddx9=x(8);
+        ddx11=x(9);
+        ddr4a=x(10);    
+        
     % *** calculate initial values for next iteration step ***
     
         phi3_init = phi3(k)+Ts*dphi3(k);
@@ -108,6 +125,9 @@ for k=1:t_size
         phi8_init = phi8(k)+Ts*dphi8(k);
         phi10_init = phi10(k)+Ts*dphi10(k);
         phi12_init = phi12(k)+Ts*dphi12(k);
+        x9_init = x9(k)+Ts*dx9(k);
+        x11_init = x11(k)+Ts*dx11(k);
+        r4a_init = r4a(k)+Ts*dr4a(k);
     
 end % loop over positions
 
