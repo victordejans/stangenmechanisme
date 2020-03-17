@@ -41,10 +41,10 @@ r12 = 564;
 y9 = 762*sin(deg2rad(8.37)); %vaste y-coordinaat van prisma 9 t.o.v. A
 y11 = 599 * sin(deg2rad(0.29)); %vaste y-coordinaat van prisma 11 t.o.v. A
 phiAE = deg2rad(69);
-phiAF = phiAE - acos((r2a^2+r2b^2-r2c^2)/(2*r2a*r2b)) %cosinusregel
-phiA = deg2rad(97.4598);
-phiB = deg2rad(21.7141);
-phiC = deg2rad(60.8261);
+phiAF = phiAE - acos((r1a^2+r1b^2-r1c^2)/(2*r1a*r1b)); %cosinusregel
+phiA = acos((r2c^2+r2b^2-r2a^2)/(2*r2c*r2b));
+phiB = acos((r2a^2+r2b^2-r2c^2)/(2*r2a*r2b));
+phiC = acos((r2a^2+r2c^2-r2b^2)/(2*r2a*r2c));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Kinematic analysis

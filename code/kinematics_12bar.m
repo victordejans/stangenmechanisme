@@ -55,10 +55,10 @@ for k=1:t_size
         % return value x: solution for the unknown angles phi3 and phi4
         % return exitflag: indicates convergence of algorithm
 
-        [x, fval, exitflag]=fsolve('loop_closure_eqs',[phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init...
+        [x, ~, exitflag]=fsolve('loop_closure_eqs',[phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init...
             phi12_init,x9_init,x11_init,r4a_init]',optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
         if (exitflag ~= 1)
-            display 'The fsolve exit flag was not 1, probably no convergence!'
+            disp 'The fsolve exit flag was not 1, probably no convergence!'
             exitflag
         end
 
@@ -70,9 +70,9 @@ for k=1:t_size
         phi8(k)=x(5);
         phi10(k)=x(6);
         phi12(k)=x(7);
-        x9=x(8);
-        x11=x(9);
-        r4a=x(10);
+        x9(k)=x(8);
+        x11(k)=x(9);
+        r4a(k)=x(10);
     
     % *** velocity analysis ***
     
