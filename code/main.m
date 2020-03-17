@@ -22,23 +22,23 @@ fig_dyn_12bar = 0;        % draw figures of dynamic analysis if 1
 
 %link lengths in cm and fixed angles in degrees
 r1a = 321; %between joint A and E
-r1b = 383; %between joint A and F
+r1b = 385; %between joint A and F
 r1c = 204; %between joint E and F
-r2a = 67; %between joint B and C
+r2a = 65; %between joint B and C
 r2b = 59; %between joint A and B
-r2c = 25; %between joint A and C
-r3 = 300;
-r4 = 148;
-r6 = 138;
-r7a = 95;
-r7b = 450;
+r2c = 27; %between joint A and C
+r3 = 299;
+r4 = 142;
+r6 = 135;
+r7a = 100;
+r7b = 452;
 r7 = r7a+r7b;
-r8a = 29; %between joint J and K
-r8b = 145; %between joint K and M
+r8a = 30; %between joint J and K
+r8b = 146; %between joint K and M
 r8 = r8a+r8b;
-r10 = 156;
-r12 = 564;
-y9 = 762*sin(deg2rad(8.37)); %vaste y-coordinaat van prisma 9 t.o.v. A
+r10 = 158;
+r12 = 559;
+y9 = 764*sin(deg2rad(8.37)); %vaste y-coordinaat van prisma 9 t.o.v. A
 y11 = 599 * sin(deg2rad(0.29)); %vaste y-coordinaat van prisma 11 t.o.v. A
 phiAE = deg2rad(69);
 phiAF = phiAE - acos((r1a^2+r1b^2-r1c^2)/(2*r1a*r1b)); %cosinusregel
@@ -52,13 +52,13 @@ phiC = acos((r2a^2+r2c^2-r2b^2)/(2*r2a*r2c));
 
 %initial angles of links to horizon in degrees and initial positions of the sliders in cm
 phi3_init = deg2rad(13);
-phi4_init = deg2rad(93);
+phi4_init = deg2rad(91);
 phi6_init = deg2rad(133);
 phi7_init = deg2rad(354);
 phi8_init = deg2rad(90);
-phi10_init = deg2rad(347);
-phi12_init = deg2rad(5);
-x9_init = 762*cos(deg2rad(8.37));
+phi10_init = deg2rad(348);
+phi12_init = deg2rad(4.3);
+x9_init = 764*cos(deg2rad(8.37));
 x11_init = 599 * cos(deg2rad(0.29));
 r4a_init = 104; %between joint D and H
 

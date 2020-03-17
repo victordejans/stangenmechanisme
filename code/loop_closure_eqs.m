@@ -34,5 +34,8 @@ F(8) = r2c*sin(phi2+phiA)+r3*sin(phi3)+r4a*sin(phi4)+r7b*sin(phi7)-r8a*sin(phi8)
 %van knoop A naar prisma 11 langs bar12 en terug
 F(9) = r2b*cos(phi2)+r12*cos(phi12)-x11;
 F(10) = r2b*sin(phi2)+r12*sin(phi12)-y11;
+% %van prisma 11 naar prisma 9 via bar10 en terug
+% F(11) = r10*cos(phi10)+r8b*cos(phi8)-x9+x11;
+% F(12) = r10*sin(phi10)+r8b*sin(phi8)-y9+y11;
 
 
