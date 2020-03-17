@@ -29,10 +29,10 @@ F(4) = -r6*sin(phi6)+r7*sin(phi7)-r8*sin(phi8)-r10*sin(phi10)-r12*sin(phi12)-r2b
 F(5) = r2c*cos(phi2+phiA)+r3*cos(phi3)+r4a*cos(phi4)-r7a*cos(phi7)+r6*cos(phi6)-r1a*cos(phiAE);
 F(6) = r2c*sin(phi2+phiA)+r3*sin(phi3)+r4a*sin(phi4)-r7a*sin(phi7)+r6*sin(phi6)-r1a*sin(phiAE);
 %van knoop A naar prisma 9 en terug
-F(7) = r2c*cos(phi2+phiA)+r3*cos(phi3)+r4a*cos(phi4)+r7b*cos(phi7)-(r8b)*cos(phi8)-x9;
-F(8) = r2c*cos(phi2+phiA)+r3*cos(phi3)+r4a*cos(phi4)+r7b*cos(phi7)-(r8b)*cos(phi8)-y9;
+F(7) = r2c*cos(phi2+phiA)+r3*cos(phi3)+r4a*cos(phi4)+r7b*cos(phi7)-r8a*cos(phi8)-x9;
+F(8) = r2c*sin(phi2+phiA)+r3*sin(phi3)+r4a*sin(phi4)+r7b*sin(phi7)-r8a*sin(phi8)-y9;
 %van knoop A naar prisma 11 langs bar12 en terug
-F(9) = r2b*cos(phi2)+r12*cos(phi12)+r10*cos(phi10)-x11;
-F(10) = r2b*cos(phi2)+r12*cos(phi12)+r10*cos(phi10)-y11;
+F(9) = r2b*cos(phi2)+r12*cos(phi12)-x11;
+F(10) = r2b*sin(phi2)+r12*sin(phi12)-y11;
 
 

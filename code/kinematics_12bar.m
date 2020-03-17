@@ -36,7 +36,7 @@ ddx11 = zeros(size(t));
 ddr4a = zeros(size(t));
 
 % fsolve options (help fsolve, help optimset)
-optim_options = optimset('Display','off');
+optim_options = optimset('Display','on');
 
 % *** loop over positions ***
 Ts = t(2) - t(1);      % timestep
@@ -57,6 +57,8 @@ for k=1:t_size
 
         [x, ~, exitflag]=fsolve('loop_closure_eqs',[phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init...
             phi12_init,x9_init,x11_init,r4a_init]',optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+        k
+        exitflag
         if (exitflag ~= 1)
             disp 'The fsolve exit flag was not 1, probably no convergence!'
             exitflag
