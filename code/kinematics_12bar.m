@@ -50,13 +50,15 @@ for k=1:t_size
         % argument loop_closure_eqs: file containing closure equations
         % argument [..]': initial values of unknown angles phi3 and phi4
         % argument optim options: parameters for fsolve
-        % argument phi2(k): input angle phi2 for which we want to calculate the unknown angles phi3 and phi4
+        % argument phi2(k): input angle phi2 for which we want to calculate the unknown angles and lengths
         % argument a1 ... phi1: constants
         % return value x: solution for the unknown angles phi3 and phi4
         % return exitflag: indicates convergence of algorithm
 
-        [x, ~, exitflag]=fsolve('loop_closure_eqs',[phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init...
-            phi12_init,x9_init,x11_init,r4a_init]',optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+        [x, ~, exitflag]=fsolve('loop_closure_eqs',...
+            [phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init,phi12_init,x9_init,x11_init,r4a_init],...
+            optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,...
+            phiA,phiB,phiC,phiAE,phiAF);
         k
         exitflag
         if (exitflag ~= 1)
