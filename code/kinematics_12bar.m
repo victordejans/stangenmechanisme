@@ -78,17 +78,8 @@ for k=1:t_size
         r4a(k)=x(10);
     
     % *** velocity analysis ***
-        
-    
-    
-%         A = [-r3*sin(phi3(k)),  r4*sin(phi4(k));
-%              r3*cos(phi3(k)), -r4*cos(phi4(k))];
-%         B = [ r2*sin(phi2(k))*dphi2(k);
-%              -r2*cos(phi2(k))*dphi2(k)];
-% 
-%         x = A\B;
 
-        dphi_init = zeros(10);
+        dphi_init = zeros(1,10);
         
         [x, ~, exitflag]=fsolve('velocity_eqs',...
             dphi_init,optim_options,...
@@ -100,7 +91,6 @@ for k=1:t_size
             exitflag
         end
         
-
         % save results
         dphi3(k) = x(1);
         dphi4(k) = x(2);
@@ -109,19 +99,25 @@ for k=1:t_size
         dphi8(k) = x(5);
         dphi10(k) = x(6);
         dphi12(k) = x(7);
-        dx9=x(8);
-        dx11=x(9);
-        dr4a=x(10);
+        dx9(k)=x(8);
+        dx11(k)=x(9);
+        dr4a(k)=x(10);
     
     % *** acceleration analysis ***
-    
-        A = [-r3*sin(phi3(k)),  r4*sin(phi4(k));
-             r3*cos(phi3(k)), -r4*cos(phi4(k))];
-        B = [r2*cos(phi2(k))*dphi2(k)^2+r2*sin(phi2(k))*ddphi2(k)+r3*cos(phi3(k))*dphi3(k)^2-r4*cos(phi4(k))*dphi4(k)^2;
-             r2*sin(phi2(k))*dphi2(k)^2-r2*cos(phi2(k))*ddphi2(k)+r3*sin(phi3(k))*dphi3(k)^2-r4*sin(phi4(k))*dphi4(k)^2];
+        
+        ddphi_init = zeros(1,10);
+        
+        [x, ~, exitflag]=fsolve('acceleration_eqs',...
+            ddphi_init,optim_options,...
+            phi3(k),phi4(k),phi6(k),phi7(k),phi8(k),phi10(k),phi12(k),x9(k),x11(k),r4a(k),...
+            dphi3(k),dphi4(k),dphi6(k),dphi7(k),dphi8(k),dphi10(k),dphi12(k),dx9(k),dx11(k),dr4a(k),...
+            phi2(k),dphi2(k),ddphi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
 
-        x = A\B;
-
+        if (exitflag ~= 1)
+            disp 'The fsolve exit flag was not 1, probably no convergence!'
+            exitflag
+        end
+        
         % save results
         ddphi3(k) = x(1);
         ddphi4(k) = x(2);
@@ -130,9 +126,9 @@ for k=1:t_size
         ddphi8(k) = x(5);
         ddphi10(k) = x(6);
         ddphi12(k) = x(7);
-        ddx9=x(8);
-        ddx11=x(9);
-        ddr4a=x(10);    
+        ddx9(k)=x(8);
+        ddx11(k)=x(9);
+        ddr4a(k)=x(10);    
         
     % *** calculate initial values for next iteration step ***
     
@@ -153,14 +149,14 @@ end % loop over positions
 
 % *** create movie ***
 
-% point P = fixed
-P = 0;
-% point S = fixed
-S = r1*exp(j*phi1);
-% define which positions we want as frames in our movie
-frames = 40;    % number of frames in movie
-delta = floor(t_size/frames); % time between frames
-index_vec = [1:delta:t_size]';
+% % point P = fixed
+% P = 0;
+% % point S = fixed
+% S = r1*exp(j*phi1);
+% % define which positions we want as frames in our movie
+% frames = 40;    % number of frames in movie
+% delta = floor(t_size/frames); % time between frames
+% index_vec = [1:delta:t_size]';
 
 % Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
 % This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
