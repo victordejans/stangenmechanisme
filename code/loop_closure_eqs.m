@@ -1,4 +1,4 @@
-function F=loop_closure_eqs(phi_init,r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi2)
+function F=loop_closure_eqs(phi_init,phi2,r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF)
 %phi_init = column vector with the initial values of the varying angles
 %phi2 = powered angle (on the wheel)
 
