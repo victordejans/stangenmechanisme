@@ -149,23 +149,25 @@ end % loop over positions
 
 % *** create movie ***
 
-% % point P = fixed
-% P = 0;
-% % point S = fixed
-% S = r1*exp(j*phi1);
-% % define which positions we want as frames in our movie
-% frames = 40;    % number of frames in movie
-% delta = floor(t_size/frames); % time between frames
-% index_vec = [1:delta:t_size]';
+% define which positions we want as frames in our movie
+frames = 200;    % number of frames in movie
+delta = floor(t_size/frames); % time between frames
+index_vec = [1:delta:t_size]';
+
+%fixed points
+number_of_time_samples = length(phi2);
+A = 0; %centrum van wiel, oorsprong van het systeem
+E = r1a*exp(1i*phiAE); %1i is the imaginary constant
+F = r1b*exp(1i*phiAF);
 
 % Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
 % This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
 % axes equal and saving the axes into "movie_axes", so that "movie_axes" can be used for further
 % plots.
-x_left = -1.5*r2;
-y_bottom = -1.5*max(r2,r4);
-x_right = r1+1.5*r4;
-y_top = 1.5*max(r2,r4);
+x_left = -r2b-50;
+y_bottom = -max(r2b,r10-y11)-50;
+x_right = r2b+r12+r10+50;
+y_top = max(r1a*sin(phiAE),r1b*sin(phiAF))+50;
 
 figure(10)
 hold on
@@ -176,21 +178,34 @@ movie_axes = axis;   %save current axes into movie_axes
 % draw and save movie frame
 for m=1:length(index_vec)
     index = index_vec(m);
-    Q = P + r2 * exp(j*phi2(index));
-    R1 = Q + r3 * exp(j*phi3(index));
-    R2 = S + r4 * exp(j*phi4(index));
+    %moving points
+    B = r2b*exp(1i*phi2(index));
+    C = r2c*exp(1i*(phi2(index)+phiA));
+    D = C + r3*exp(1i*phi3(index));
+    G = E - r6*exp(1i*phi6(index));
+    H = G + r7a*exp(1i*phi7(index));
+    J = H + r7b*exp(1i*phi7(index));
+    N = B + r12*exp(1i*phi12(index));
+    M = N + r10*exp(1i*phi10(index));
+    K = M + r8b*exp(1i*phi8(index));
     
-    loop1 = [P Q R1 R2 S];
+    loop1 = [A B C A];
+    loop2 = [C D H F];
+    loop3 = [E G H J K M N B];
     
     figure(10)
     clf
     hold on
     plot(real(loop1),imag(loop1),'-o')
+    hold on
+    plot(real(loop2),imag(loop2),'-o')
+    hold on
+    plot(real(loop3),imag(loop3),'-o')
     
     axis(movie_axes);     % set axes as in movie_axes
     Movie(m) = getframe;  % save frame to a variable Film
 end
 
 % save movie
-save fourbar_movie Movie
+save 12bar_movie Movie
 close(10)

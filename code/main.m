@@ -67,12 +67,13 @@ t_begin = 0;                   % start time of simulation
 t_end = 10;                    % end time of simulation
 Ts = 0.05;                     % time step of simulation
 t = (t_begin:Ts:t_end)';       % time vector
+number_of_time_samples = length(t);
 
 %initialisation of driver (we drijven het wiel aan)
-omega = 0.5;
+omega = pi();
 phi2 = omega*t - 47*pi/180; %phi2 is dus een vector met alle waarden van phi2 op de verschillende tijdstippen. we trekken de initiele hoek phi2_init=47° af.
-dphi2 = omega;
-ddphi2 = 0;
+dphi2 = omega*ones(number_of_time_samples,1);
+ddphi2 = zeros(number_of_time_samples,1);
 
 [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
     kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
@@ -83,8 +84,8 @@ ddphi2 = 0;
 %Movie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% figure
-% load 12bar_movie Movie
-% movie(Movie)
-% 
+figure
+load 12bar_movie Movie
+movie(Movie)
+
 
