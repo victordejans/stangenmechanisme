@@ -57,10 +57,9 @@ for k=1:t_size
 
         [x, ~, exitflag]=fsolve('loop_closure_eqs',...
             [phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init,phi12_init,x9_init,x11_init,r4a_init],...
-            optim_options,phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,...
-            phiA,phiB,phiC,phiAE,phiAF);
-        k
-        exitflag
+            optim_options,...
+            phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+
         if (exitflag ~= 1)
             disp 'The fsolve exit flag was not 1, probably no convergence!'
             exitflag
@@ -79,13 +78,28 @@ for k=1:t_size
         r4a(k)=x(10);
     
     % *** velocity analysis ***
+        
     
-        A = [-r3*sin(phi3(k)),  r4*sin(phi4(k));
-             r3*cos(phi3(k)), -r4*cos(phi4(k))];
-        B = [ r2*sin(phi2(k))*dphi2(k);
-             -r2*cos(phi2(k))*dphi2(k)];
+    
+%         A = [-r3*sin(phi3(k)),  r4*sin(phi4(k));
+%              r3*cos(phi3(k)), -r4*cos(phi4(k))];
+%         B = [ r2*sin(phi2(k))*dphi2(k);
+%              -r2*cos(phi2(k))*dphi2(k)];
+% 
+%         x = A\B;
 
-        x = A\B;
+        dphi_init = zeros(10);
+        
+        [x, ~, exitflag]=fsolve('velocity_eqs',...
+            dphi_init,optim_options,...
+            phi3(k),phi4(k),phi6(k),phi7(k),phi8(k),phi10(k),phi12(k),x9(k),x11(k),r4a(k),...
+            phi2(k),dphi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+
+        if (exitflag ~= 1)
+            disp 'The fsolve exit flag was not 1, probably no convergence!'
+            exitflag
+        end
+        
 
         % save results
         dphi3(k) = x(1);
