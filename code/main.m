@@ -31,6 +31,7 @@ r2c = 27; %between joint A and C
 r3 = 299;
 r4 = 142;
 r6 = 135;
+r6a = 95; %1 zijde van de L-vormige stang
 r7a = 100;
 r7b = 452;
 r7 = r7a+r7b;
@@ -51,35 +52,48 @@ phi11 = 3*pi()/2;
 
 %dynamic parameters
 
+inhoud_zuiger9 = 0;
+inhoud_zuiger11 = 0;
+
 X2 = 0;
 X3 = r3/2:
 X4 = r4/2;
+X5 = 0;
 X6 = r6/2;
 X7 = r7/2;
 X8 = r8/2;
+X9 = 165; %de massa ligt vooral in de zuiger
 X10 = r10/2;
+X11 = 333; %de massa ligt vooral in de zuiger
 X12 = r12/2;
 
 Y2 = 0;
 Y3 = 0;
-Y4 = 
-Y6 = 
+Y4 = 0;
+Y5 = 0;
+Y6 = r6a/2*cos(pi()/4); %door de knik in deze stang
 Y7 = 0;
 Y8 = 0;
-Y10 = 
+Y9 = 0;
+Y10 = 0;
+Y11 = 0;
 Y12 = 0;
 
-straalWiel = 
+straalWiel = 176;
 sgStaal = 7800/10^6; %kg per cm³ (onze afmetingen staan ook in cm)
 doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen evend dik zijn
 
 m2 = sgStaal * straalWiel^2 * pi() * 5; %wiel is 5cm dik
 m3 = sgStaal * doorsnedeStang * r3;
 m4 = sgStaal * doorsnedeStang * r4;
+m5 = 0;
+m6 = sgSTaal * doorsnedeStang * 2*r6a;
 m7 = sgStaal * doorsnedeStang * r7;
 m8 = sgStaal * doorsnedeStang * r8;
+m9 = sgStaal * (inhoud_zuiger9 + inhoud_blokje9);
 m10 = sgStaal * doorsnedeStang * r10;
-m12  = sgStaal * doorsnedeStang * r12;
+m11 = sgStaal * (inhoud_zuiger11 + inhoud_blokje11);
+m12 = sgStaal * doorsnedeStang * r12;
 
 I2 = 0.5 * m2 * straalWiel;%traagheidsmomenten rond de as die uit het beschouwde vlak komt
 I3 = m3*r3^2/12;
