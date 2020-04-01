@@ -31,11 +31,11 @@ r4 = 0.0762;
 phi1 = 0;
 
 % dynamic parameters, defined in a local frame on each of the bars.
-X2 = r2/2;               % X coordinates of cog (centre of gravity)
+X2 = r2/2;               % X coordinates of cog (centre of gravity), in local frame related to the bar
 X3 = r3/2;
 X4 = r4/2;
 
-Y2 = 0;                  % Y coordinates of cog
+Y2 = 0;                  % Y coordinates of cog, in local frame
 Y3 = 0.0102362;
 Y4 = 0;
 
