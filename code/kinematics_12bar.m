@@ -1,5 +1,5 @@
 function [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
-    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
     phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
@@ -58,7 +58,7 @@ for k=1:t_size
         [x, ~, exitflag]=fsolve('loop_closure_eqs',...
             [phi3_init phi4_init phi6_init phi7_init phi8_init phi10_init,phi12_init,x9_init,x11_init,r4a_init],...
             optim_options,...
-            phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF);
+            phi2(k),r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11);
 
         if (exitflag ~= 1)
             disp 'The fsolve exit flag was not 1, probably no convergence!'
@@ -186,12 +186,13 @@ for m=1:length(index_vec)
     H = G + r7a*exp(1i*phi7(index));
     J = H + r7b*exp(1i*phi7(index));
     N = B + r12*exp(1i*phi12(index));
+    O = N + r11*exp(1i*phi11);
     M = N + r10*exp(1i*phi10(index));
     K = M + r8b*exp(1i*phi8(index));
     
     loop1 = [A B C A];
     loop2 = [C D H F];
-    loop3 = [E G H J K M N B];
+    loop3 = [E G H J K M O N B];
     
     figure(10)
     clf
