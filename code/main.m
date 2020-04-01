@@ -38,6 +38,7 @@ r8a = 30; %between joint J and K
 r8b = 146; %between joint K and M
 r8 = r8a+r8b;
 r10 = 158;
+r11 = 36;
 r12 = 559;
 y9 = 764*sin(deg2rad(8.37)); %vaste y-coordinaat van prisma 9 t.o.v. A
 y11 = 599 * sin(deg2rad(0.29)); %vaste y-coordinaat van prisma 11 t.o.v. A
@@ -46,6 +47,7 @@ phiAF = phiAE - acos((r1a^2+r1b^2-r1c^2)/(2*r1a*r1b)); %cosinusregel
 phiA = acos((r2c^2+r2b^2-r2a^2)/(2*r2c*r2b));
 phiB = acos((r2a^2+r2b^2-r2c^2)/(2*r2a*r2b));
 phiC = acos((r2a^2+r2c^2-r2b^2)/(2*r2a*r2c));
+phi11 = 3*pi()/2;
 
 %dynamic parameters
 
@@ -116,7 +118,7 @@ dphi2 = omega*ones(number_of_time_samples,1);
 ddphi2 = zeros(number_of_time_samples,1);
 
 [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
-    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+    kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
     phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
