@@ -116,7 +116,6 @@ J9 = (m_blokje9 * 0) + ...
      (m_stang9 * lengte_stang9^2 / 3 + m_stang9 * X9^2) + ...
      (m_zuiger9 * (straal_zuiger9^2/4 + dikte_zuiger9^2/12) + m_zuiger9 * (X9-lengte_stang9)^2);
 
-
 X10 = r10/2;
 Y10 = 0;
 m10 = sgStaal * doorsnedeStang * r10;
@@ -176,7 +175,7 @@ ddphi2 = zeros(number_of_time_samples,1);
 
 %info over de joints:   H is het scharnier dat 7 rond 5 doet draaien
 %                       I is de prismatische joint van 5 op 4
-%                       K is het scharnier tussen 8 en 11
+%                       K is het scharnier tussen 8 en 9
 %                       L is de prismatische joint van 9 op de grond
 %                       N is het scharnier van 10 op 11
 %                       O is het scharnier van 12 op 11

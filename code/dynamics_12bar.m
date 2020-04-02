@@ -8,9 +8,154 @@ function [FAx,FAy,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FIn,MI
                      Y2,Y3,Y4,Y5,Y6,Y7,Y8,Y9,Y10,Y11,Y12,...
                      J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,...
                      t,fig_dyn_12bar)
-%
+                 
+%vectors from the cog of a bar to a joint
 
+cog2Ax = -X2*cos(phi2)-Y2*cos(phi2+pi/2); %x-component of the vector from the cog of bar 2 to joint A
+cog2Ay = -X2*sin(phi2)-Y2*sin(phi2+pi/2);
+cog2Bx = (r2b-X2)*cos(phi2)-Y2*cos(phi2+pi/2);
+cog2By = (r2b-X2)*sin(phi2)-Y2*sin(phi2+pi/2);
+cog2Cx = (r2c-X2)*cos(phi2+phiA)-Y2*cos(phi2+phiA+pi/2);
+cog2Cy = (r2c-X2)*sin(phi2+phiA)-Y2*sin(phi2+phiA+pi/2);
 
+cog3Cx = -X3*cos(phi3)-Y3*cos(phi3+pi/2);
+cog3Cy = -X3*sin(phi3)-Y3*sin(phi3+pi/2);
+cog3Dx = (r3-X3)*cos(phi3)-Y3*cos(phi3+pi/2);
+cog3Dy = (r3-X3)*sin(phi3)-Y3*sin(phi3+pi/2);
+
+cog4Dx = -X4*cos(phi4)-Y4*cos(phi4+pi/2);
+cog4Dy = -X4*sin(phi4)-Y4*sin(phi4+pi/2);
+cog4Fx = (r4-X4)*cos(phi4)-Y4*cos(phi4+pi/2);
+cog4Fy = (r4-X4)*sin(phi4)-Y4*sin(phi4+pi/2);
+cog4Ix = (r4a-X4)*cos(phi4)-Y4*cos(phi4+pi/2);
+cog4Iy = (r4a-X4)*sin(phi4)-Y4*sin(phi4+pi/2);
+
+cog5Hx = -X5*cos(phi4)-Y5*cos(phi4+pi/2);
+cog5Hy = -X5*sin(phi4)-Y5*sin(phi4+pi/2);
+cog5Ix = -X5*cos(phi4)-Y5*cos(phi4+pi/2);
+cog5Iy = -X5*sin(phi4)-Y5*sin(phi4+pi/2);
+
+cog6Gx = -X6*cos(phi6)-Y6*cos(phi6+pi/2);
+cog6Gy = -X6*sin(phi6)-Y6*sin(phi6+pi/2);
+cog6Ex = (r6-X6)*cos(phi6)-Y6*cos(phi6+pi/2);
+cog6Ey = (r6-X6)*sin(phi6)-Y6*sin(phi6+pi/2);
+
+cog7Gx = -X7*cos(phi7)-Y7*cos(phi7+pi/2);
+cog7Gy = -X7*sin(phi7)-Y7*sin(phi7+pi/2);
+cog7Jx = (r7-X7)*cos(phi7)-Y7*cos(phi7+pi/2);
+cog7Jy = (r7-X7)*sin(phi7)-Y7*sin(phi7+pi/2);
+cog7Hx = (r7a-X7)*cos(phi7)-Y7*cos(phi7+pi/2);
+cog7Hy = (r7a-X7)*sin(phi7)-Y7*sin(phi7+pi/2);
+
+cog8Mx = -X8*cos(phi8)-Y8*cos(phi8+pi/2);
+cog8My = -X8*sin(phi8)-Y8*sin(phi8+pi/2);
+cog8Jx = (r8-X8)*cos(phi8)-Y8*cos(phi8+pi/2);
+cog8Jy = (r8-X8)*sin(phi8)-Y8*sin(phi8+pi/2);
+cog8Kx = (r8b-X8)*cos(phi8)-Y8*cos(phi8+pi/2);
+cog8Ky = (r8b-X8)*sin(phi8)-Y8*sin(phi8+pi/2);
+
+cog9Kx = -X9;
+cog9Ky = -Y9;
+cog9Lx
+cog9Ly
+
+cog10Ox = -X10*cos(phi10)-Y10*cos(phi10+pi/2);
+cog10Oy = -X10*sin(phi10)-Y10*sin(phi10+pi/2);
+cog10Mx = (r10-X10)*cos(phi10)-Y10*cos(phi10+pi/2);
+cog10My = (r10-X10)*sin(phi10)-Y10*sin(phi10+pi/2);
+
+cog11Nx = -X11;
+cog11Ny = -Y11;
+cog11Ox = r11*cos(phi11)-X11;
+cog11Oy = r11*sin(phi11)-Y11;
+cog11Px
+cog11Py
+
+cog12Bx = -X12*cos(phi12)-Y12*cos(phi12+pi/2);
+cog12By = -X12*sin(phi12)-Y12*sin(phi12+pi/2);
+cog12Nx = (r12-X12)*cos(phi12)-Y12*cos(phi12+pi/2);
+cog12Ny = (r12-X12)*sin(phi12)-Y12*sin(phi12+pi/2);
+
+% 3D omega (dphi) and alpha (ddphi) vectors
+
+omega2 = [zeros(size(phi2)) zeros(size(phi2)) dphi2];
+omega3 = [zeros(size(phi3)) zeros(size(phi3)) dphi3];
+omega4 = [zeros(size(phi4)) zeros(size(phi4)) dphi4];
+omega6 = [zeros(size(phi6)) zeros(size(phi6)) dphi6];
+omega7 = [zeros(size(phi7)) zeros(size(phi7)) dphi7];
+omega8 = [zeros(size(phi8)) zeros(size(phi8)) dphi8];
+omega10 = [zeros(size(phi10)) zeros(size(phi10)) dphi10];
+omega12 = [zeros(size(phi12)) zeros(size(phi12)) dphi12];
+v9 = [zeros(size(x9)) zeros(size(x9)) dx9];
+v11 = [zeros(size(x11)) zeros(size(x11)) dx11];
+v4a = [zeros(size(r4a)) zeros(size(r4a)) dr4a];
+
+alpha2 = [zeros(size(phi2)) zeros(size(phi2)) ddphi2];
+alpha3 = [zeros(size(phi3)) zeros(size(phi3)) ddphi3];
+alpha4 = [zeros(size(phi4)) zeros(size(phi4)) ddphi4];
+alpha6 = [zeros(size(phi6)) zeros(size(phi6)) ddphi6];
+alpha7 = [zeros(size(phi7)) zeros(size(phi7)) ddphi7];
+alpha8 = [zeros(size(phi8)) zeros(size(phi8)) ddphi8];
+alpha10 = [zeros(size(phi10)) zeros(size(phi10)) ddphi10];
+alpha12 = [zeros(size(phi12)) zeros(size(phi12)) ddphi12];
+a9 = [zeros(size(x9)) zeros(size(x9)) ddx9];
+a11 = [zeros(size(x11)) zeros(size(x11)) ddx11];
+a4a = [zeros(size(r4a)) zeros(size(r4a)) ddr4a];
+
+% 3D model vectors
+
+Acog2 = [-cog2Ax    -cog2Ay    zeros(size(phi2))];
+Ccog3 = [-cog3Cx    -cog3Cy    zeros(size(phi2))];
+Dcog4 = [-cog4Dx    -cog4Dy    zeros(size(phi2))];
+Icog5 = [-cog5Ix    -cog5Iy    zeros(size(phi2))];
+Gcog6 = [-cog6Gx    -cog6Gy    zeros(size(phi2))];
+Gcog7 = [-cog7Gx    -cog7Gy    zeros(size(phi2))];
+Mcog8 = [-cog8Mx    -cog8My    zeros(size(phi2))];
+Kcog9 = [-cog9Kx    -cog9Ky    zeros(size(phi2))];
+Ocog10 = [-cog10Ox    -cog10Oy    zeros(size(phi2))];
+Ncog11 = [-cog11Nx    -cog11Ny    zeros(size(phi2))];
+Bcog12 = [-cog12Bx    -cog12By    zeros(size(phi2))];
+
+% acceleration vectors of each bar
+
+acc2 = cross(omega2,cross(omega2,Acog2)) + cross(alpha2,Acog2);
+acc3 = cross(omega3,cross(omega3,Ccog3)) + cross(alpha3,Ccog3);
+acc4 = cross(omega4,cross(omega4,Dcog4)) + cross(alpha4,Dcog4);
+acc5 = cross(omega5,cross(omega5,Icog5)) + cross(alpha5,Icog5);
+acc6 = cross(omega6,cross(omega6,Gcog6)) + cross(alpha6,Gcog6);
+acc7 = cross(omega7,cross(omega7,Gcog7)) + cross(alpha7,Gcog7);
+acc8 = cross(omega8,cross(omega8,Mcog8)) + cross(alpha8,Mcog8);
+acc9 = cross(omega9,cross(omega9,Kcog9)) + cross(alpha9,Kcog9);
+acc10 = cross(omega10,cross(omega10,Ocog10)) + cross(alpha10,Ocog10);
+acc11 = cross(omega11,cross(omega11,Ncog11)) + cross(alpha11,Ncog11);
+acc12 = cross(omega12,cross(omega12,Bcog12)) + cross(alpha12,Bcog12);
+
+acc2x = acc2(:,1);
+acc2y = acc2(:,2);
+acc3x = acc3(:,1);
+acc3y = acc3(:,2);
+acc4x = acc4(:,1);
+acc4y = acc4(:,2);
+acc5x = acc5(:,1);
+acc5y = acc5(:,2);
+acc6x = acc6(:,1);
+acc6y = acc6(:,2);
+acc7x = acc7(:,1);
+acc7y = acc7(:,2);
+acc8x = acc8(:,1);
+acc8y = acc8(:,2);
+acc9x = acc9(:,1);
+acc9y = acc9(:,2);
+acc10x = acc10(:,1);
+acc10y = acc10(:,2);
+acc11x = acc11(:,1);
+acc11y = acc11(:,2);
+acc12x = acc12(:,1);
+acc12y = acc12(:,2);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FORCE ANALYSIS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 

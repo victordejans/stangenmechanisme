@@ -149,6 +149,8 @@ end % loop over positions
 
 % *** create movie ***
 
+if fig_kin_12bar == 1
+
 % define which positions we want as frames in our movie
 frames = 200;    % number of frames in movie
 delta = floor(t_size/frames); % time between frames
@@ -210,3 +212,7 @@ end
 % save movie
 save 12bar_movie Movie
 close(10)
+
+end
+
+end
