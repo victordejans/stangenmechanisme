@@ -12,6 +12,9 @@ function [FAx,FAy,MAz,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FI
 
 %fixed parameter                 
 r7 = r7a+r7b;
+ddphi5 = zeros(size(ddphi2));
+ddphi9 = zeros(size(ddphi2));
+ddphi11 = zeros(size(ddphi2));
 
 %vectors from the cog of a bar to a joint
 
@@ -211,8 +214,109 @@ MPz = zeros(size(phi2));
 for k=1:size(t,1)
     
     
-%     %       FAx FAy MAz FBx FBy FCx FCy FDx FDy FEx FEy FFx FFy FGx FGy FHx FHy FIn MIz FJx FJy FKx FKy FLy MLz FMx FMy FNx FNy FOx FOy FPy MPz  
-%     A = [   1   0   0   1   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0;               
-%             0   1   0   0   1   0   1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  
-
+    %       FAx     FAy     MAz     FBx     FBy     FCx     FCy     FDx     FDy     FEx     FEy     FFx     FFy     FGx     FGy     FHx     FHy     FIn     MIz     FJx     FJy     FKx     FKy     FLy     MLz     FMx     FMy     FNx     FNy     FOx     FOy     FPy     MPz
+    A = [   %%%%KRACHTVERGELIJKINGEN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            1       0       0       1       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;               
+            0       1       0       0       1       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       -1      0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       -1      0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       -1      0       0       0       1       0       0       0       0       0 -cos(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;  
+            0       0       0       0       0       0       0       0       -1      0       0       0       1       0       0       0       0  sin(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            %hier mss twee lijntjes voor blok 5
+            0       0       0       0       0       0       0       0       0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0;
+            %hier mss twee lijntjes voor blok 9
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       0       0       -1      0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       0       0       -1      0       0;
+            %hier mss twee lijntjes voor blok 11
+            0       0       0       -1      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0;
+            0       0       0       0       -1      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0;
+            %%%%MOMENTVERGELIJKINGEN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      -cog2Ay(k) cog2Ax(k)  1 -cog2By(k) cog2Bx(k) -cog2Cy(k) cog2Cx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0 cog3Cy(k) -cog3Cx(k) -cog3Dy(k) cog3Dx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0    cog4Dy(k) -cog4Dx(k) 0     0 -cog4Fy(k) cog4Fx(k)  0       0    0  0   cos(phi4(k))*cog4Iy(k)+sin(phi4(k))*cog4Ix(k) 1 0 0 0 0     0       0       0       0       0       0       0       0       0       0;
+            %5
+            0       0       0       0       0       0       0       0       0  -cog6Ey(k) cog6Ex(k) 0       0 -cog6Gy(k) cog6Gx(k)  0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0 cog7Gy(k) -cog7Gx(k) -cog7Hy(k) cog7Hx(k) 0   0 -cog7Jy(k) cog7Jx(k)  0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 cog8Jy(k) -cog8Jx(k) -cog8Ky(k) cog8Kx(k) 0   0  -cog8My(k) cog8Mx(k) 0       0       0       0       0       0;
+            %9
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 cog10My(k) -cog10Mx(k) 0      0 cog10Oy(k) -cog10Ox(k) 0      0;
+            %11
+            0       0       0 cog12By(k) -cog12Bx(k) 0      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 -cog12Ny(k) cog12Nx(k) 0      0       0       0];
+            
+    B = [m2*acc2x(k);
+         m2*acc2y(k);
+         m3*acc3x(k);
+         m3*acc3y(k);
+         m4*acc4x(k);
+         m4*acc4y(k);
+%          m5*acc5x(k);
+%          m5*acc5y(k);
+         m6*acc6x(k);
+         m6*acc6y(k);
+         m7*acc7x(k);
+         m7*acc7y(k);
+         m8*acc8x(k);
+         m8*acc8y(k);
+%          m9*acc9x(k);
+%          m9*acc9y(k);
+         m10*acc10x(k);
+         m10*acc10y(k);
+%          m11*acc11x(k);
+%          m11*acc11y(k);
+         m12*acc12x(k);
+         m12*acc12y(k);
+         J2*ddphi2(k);
+         J3*ddphi3(k);
+         J4*ddphi4(k);
+%          J5*ddphi5(k);
+         J6*ddphi6(k);
+         J7*ddphi7(k);
+         J8*ddphi8(k);
+%          J9*ddphi9(k);
+         J10*ddphi10(k);
+%          J11*ddphi11(k);
+         J12*ddphi12(k)];
+     
+    x = A\B
+    
+    FAx(k) = x(1);
+    FAy(k) = x(2);
+    MAz(k) = x(3);%driving torque
+    FBx(k) = x(4);
+    FBy(k) = x(5);
+    FCx(k) = x(6);
+    FCy(k) = x(7);
+    FDx(k) = x(8);
+    FDy(k) = x(9);
+    FEx(k) = x(10);
+    FEy(k) = x(11);
+    FFx(k) = x(12);
+    FFy(k) = x(13);
+    FGx(k) = x(14);
+    FGy(k) = x(15);
+    FHx(k) = x(16);
+    FHy(k) = x(17);
+    FIn(k) = x(18);
+    MIz(k) = x(19);
+    FJx(k) = x(20);
+    FJy(k) = x(21);
+    FKx(k) = x(22);
+    FKy(k) = x(23);
+    FLy(k) = x(24);
+    MLz(k) = x(25);
+    FMx(k) = x(26);
+    FMy(k) = x(27);
+    FNx(k) = x(28);
+    FNy(k) = x(29);
+    FOx(k) = x(30);
+    FOy(k) = x(31);
+    FPy(k) = x(32);
+    MPz(k) = x(33);
+    
+            
 end
