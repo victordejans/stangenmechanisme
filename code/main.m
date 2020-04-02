@@ -52,55 +52,90 @@ phi11 = 3*pi()/2;
 
 %dynamic parameters
 
-inhoud_zuiger9 = 0;
-inhoud_zuiger11 = 0;
+straal_zuiger9 = 19;
+dikte_zuiger9 = 91;
+inhoud_zuiger9 = dikte_zuiger9 * straal_zuiger9^2*pi();
+lengte_stang9 = 178;
+inhoud_blokje9 = 0;
 
-X2 = 0;
-X3 = r3/2:
-X4 = r4/2;
-X5 = 0;
-X6 = r6/2;
-X7 = r7/2;
-X8 = r8/2;
-X9 = 165; %de massa ligt vooral in de zuiger
-X10 = r10/2;
-X11 = 333; %de massa ligt vooral in de zuiger
-X12 = r12/2;
-
-Y2 = 0;
-Y3 = 0;
-Y4 = 0;
-Y5 = 0;
-Y6 = r6a/2*cos(pi()/4); %door de knik in deze stang
-Y7 = 0;
-Y8 = 0;
-Y9 = 0;
-Y10 = 0;
-Y11 = 0;
-Y12 = 0;
+straal_zuiger11 = 50;
+dikte_zuiger11 = 10;
+inhoud_zuiger11 = dikte_zuiger11 * straal_zuiger11^2*pi();
+lengte_stang11 = 221;
+x_blokje11 = 50;
+y_blokje11 = 60;
+z_blokje11 = 40;
+inhoud_blokje11 = x_blokje11 * y_blokje11 * z_blokje11;
 
 straalWiel = 176;
 sgStaal = 7800/10^6; %kg per cm³ (onze afmetingen staan ook in cm)
 doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen evend dik zijn
 
+X2 = 0;
+Y2 = 0;
 m2 = sgStaal * straalWiel^2 * pi() * 5; %wiel is 5cm dik
-m3 = sgStaal * doorsnedeStang * r3;
-m4 = sgStaal * doorsnedeStang * r4;
-m5 = 0;
-m6 = sgSTaal * doorsnedeStang * 2*r6a;
-m7 = sgStaal * doorsnedeStang * r7;
-m8 = sgStaal * doorsnedeStang * r8;
-m9 = sgStaal * (inhoud_zuiger9 + inhoud_blokje9);
-m10 = sgStaal * doorsnedeStang * r10;
-m11 = sgStaal * (inhoud_zuiger11 + inhoud_blokje11);
-m12 = sgStaal * doorsnedeStang * r12;
+J2 = 0.5 * m2 * straalWiel;
 
-I2 = 0.5 * m2 * straalWiel;%traagheidsmomenten rond de as die uit het beschouwde vlak komt
-I3 = m3*r3^2/12;
-I4 = m4*r4^2/12;
-I7 = m7*r7^2/12;
-I8 = m8*r8^2/12;
-I12 = m12*r12^2/12;
+X3 = r3/2;
+Y3 = 0;
+m3 = sgStaal * doorsnedeStang * r3;
+J3 = m3*r3^2/12;
+
+X4 = r4/2;
+Y4 = 0;
+m4 = sgStaal * doorsnedeStang * r4;
+J4 = m4*r4^2/12;
+
+X5 = 0;
+Y5 = 0;
+m5 = 0;
+J5 = 0;
+
+X6 = r6/2;
+Y6 = r6a/2*cos(pi()/4); %door de knik in deze stang
+m6 = sgStaal * doorsnedeStang * 2*r6a;
+J6 = 2*(m6/2)*r6a^2/3;
+
+X7 = r7/2;
+Y7 = 0;
+m7 = sgStaal * doorsnedeStang * r7;
+J7 = m7*r7^2/12;
+
+X8 = r8/2;
+Y8 = 0;
+m8 = sgStaal * doorsnedeStang * r8;
+J8 = m8*r8^2/12;
+
+m_blokje9 = sgStaal * inhoud_blokje9;
+m_stang9 = sgStaal * doorsnedeStang * lengte_stang9;
+m_zuiger9 = sgStaal * inhoud_zuiger9;
+m9 = m_blokje9 + m_stang9 + m_zuiger9;
+X9 = (m_blokje9 * 0 + m_stang9 * lengte_stang9/2 + m_zuiger9 * lengte_stang9)/m9;
+Y9 = (m_blokje9 * 0 + m_stang9 * 0 + m_zuiger9 * 0)/m9;
+J9 = (m_blokje9 * 0) + ...
+     (m_stang9 * lengte_stang9^2 / 3 + m_stang9 * X9^2) + ...
+     (m_zuiger9 * (straal_zuiger9^2/4 + dikte_zuiger9^2/12) + m_zuiger9 * (X9-lengte_stang9)^2);
+
+
+X10 = r10/2;
+Y10 = 0;
+m10 = sgStaal * doorsnedeStang * r10;
+J10 = m10*r10^2/12;
+
+m_blokje11 = sgStaal * inhoud_blokje11;
+m_stang11 = sgStaal * doorsnedeStang * lengte_stang11;
+m_zuiger11 = sgStaal * inhoud_zuiger11;
+m11 = m_blokje11 + m_stang11 + m_zuiger11;
+X11 = (m_blokje11 * 0 + m_stang11 * lengte_stang11/2 + m_zuiger11 * lengte_stang11)/m11;
+Y11 = (m_blokje11 * -10 + m_stang11 * 0 + m_zuiger11 * 0)/m11;
+J11 = (m_blokje11 * (x_blokje11^2 + y_blokje11^2)/12 + m_blokje11 * (X11^2 + (Y11+10)^2)) + ...
+      (m_stang11 * lengte_stang11^2 / 3 + m_stang11 * X11^2) + ...
+      (m_zuiger11 * (straal_zuiger11^2/4 + dikte_zuiger11^2/12) + m_zuiger11 * (X11-lengte_stang11)^2);
+
+X12 = r12/2;
+Y12 = 0;
+m12 = sgStaal * doorsnedeStang * r12;
+J12 = m12*r12^2/12;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Kinematic analysis
