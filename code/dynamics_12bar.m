@@ -8,6 +8,7 @@ function [FAx,FAy,MAz,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FI
                      X2,X3,X4,X5,X6,X7,X8,X9,X10,X11,X12,...
                      Y2,Y3,Y4,Y5,Y6,Y7,Y8,Y9,Y10,Y11,Y12,...
                      J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,...
+                     lengte_stang9,straal_zuiger9,lengte_stang11,straal_zuiger11,...
                      t,fig_dyn_12bar)
 
 %fixed parameter                 
@@ -63,8 +64,8 @@ cog8Ky = (r8b-X8)*sin(phi8)-Y8*sin(phi8+pi/2);
 
 cog9Kx = -X9*ones(size(t));
 cog9Ky = -Y9*ones(size(t));
-% cog9Lx
-% cog9Ly
+cog9Lx = (lengte_stang9-X9)*ones(size(t));
+cog9Ly = (straal_zuiger9-Y9)*ones(size(t));
 
 cog10Ox = -X10*cos(phi10)-Y10*cos(phi10+pi/2);
 cog10Oy = -X10*sin(phi10)-Y10*sin(phi10+pi/2);
@@ -75,8 +76,8 @@ cog11Nx = -X11*ones(size(t));
 cog11Ny = -Y11*ones(size(t));
 cog11Ox = r11*cos(phi11)-X11*ones(size(t));
 cog11Oy = r11*sin(phi11)-Y11*ones(size(t));
-% cog11Px
-% cog11Py
+cog11Px = (lengte_stang11-X11)*ones(size(t));
+cog11Py = (straal_zuiger11-Y11)*ones(size(t));
 
 cog12Bx = -X12*cos(phi12)-Y12*cos(phi12+pi/2);
 cog12By = -X12*sin(phi12)-Y12*sin(phi12+pi/2);
@@ -222,30 +223,33 @@ for k=1:size(t,1)
             0       0       0       0       0       0       -1      0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       -1      0       0       0       1       0       0       0       0       0 -cos(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;  
             0       0       0       0       0       0       0       0       -1      0       0       0       1       0       0       0       0  sin(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
-            %hier mss twee lijntjes voor blok 5
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0  cos(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0      -1 -sin(phi4(k)) 0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0       1       0       0       0       0       0       0;
-            %hier mss twee lijntjes voor blok 9
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       0       0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      1       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       0       0       -1      0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       0       0       -1      0       0;
-            %hier mss twee lijntjes voor blok 11
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       -1      0       1       1       0;
             0       0       0       -1      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0       0;
             0       0       0       0       -1      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       1       0       0       0       0;
             %%%%MOMENTVERGELIJKINGEN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       -cog2Ay(k) cog2Ax(k)  1 -cog2By(k) cog2Bx(k) -cog2Cy(k) cog2Cx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0 cog3Cy(k) -cog3Cx(k) -cog3Dy(k) cog3Dx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0    cog4Dy(k) -cog4Dx(k) 0     0 -cog4Fy(k) cog4Fx(k)  0       0    0  0   cos(phi4(k))*cog4Iy(k)+sin(phi4(k))*cog4Ix(k) 1 0 0 0 0     0       0       0       0       0       0       0       0       0       0;
-            %5
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0  0 cog5Hy(k) -cog5Hx(k) -cos(phi4(k))*cog5Iy(k)-sin(phi4(k))*cog5Ix(k) 1 0 0 0 0 0    0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0  -cog6Ey(k) cog6Ex(k) 0       0 -cog6Gy(k) cog6Gx(k)  0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0 cog7Gy(k) -cog7Gx(k) -cog7Hy(k) cog7Hx(k) 0   0 -cog7Jy(k) cog7Jx(k)  0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 cog8Jy(k) -cog8Jx(k) -cog8Ky(k) cog8Kx(k) 0   0  -cog8My(k) cog8Mx(k) 0       0       0       0       0       0;
-            %9
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0  cog9Ky(k) -cog9Kx(k) cog9Lx(k) 1     0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 cog10My(k) -cog10Mx(k) 0      0 cog10Oy(k) -cog10Ox(k) 0      0;
-            %11
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 0 cog11Ny(k) -cog11Nx(k) -cog11Oy(k) cog11Ox(k) cog11Px(k) 1;     
             0       0       0 cog12By(k) -cog12Bx(k) 0      0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 -cog12Ny(k) cog12Nx(k) 0      0       0       0];
             
     B = [m2*acc2x(k);
@@ -254,35 +258,35 @@ for k=1:size(t,1)
          m3*acc3y(k);
          m4*acc4x(k);
          m4*acc4y(k);
-%          m5*acc5x(k);
-%          m5*acc5y(k);
+         m5*acc5x(k);
+         m5*acc5y(k);
          m6*acc6x(k);
          m6*acc6y(k);
          m7*acc7x(k);
          m7*acc7y(k);
          m8*acc8x(k);
          m8*acc8y(k);
-%          m9*acc9x(k);
-%          m9*acc9y(k);
+         m9*acc9x(k);
+         m9*acc9y(k);
          m10*acc10x(k);
          m10*acc10y(k);
-%          m11*acc11x(k);
-%          m11*acc11y(k);
+         m11*acc11x(k);
+         m11*acc11y(k);
          m12*acc12x(k);
          m12*acc12y(k);
          J2*ddphi2(k);
          J3*ddphi3(k);
          J4*ddphi4(k);
-%          J5*ddphi5(k);
+         J5*ddphi5(k);
          J6*ddphi6(k);
          J7*ddphi7(k);
          J8*ddphi8(k);
-%          J9*ddphi9(k);
+         J9*ddphi9(k);
          J10*ddphi10(k);
-%          J11*ddphi11(k);
+         J11*ddphi11(k);
          J12*ddphi12(k)];
      
-    x = A\B
+    x = A\B;
     
     FAx(k) = x(1);
     FAy(k) = x(2);
@@ -318,5 +322,18 @@ for k=1:size(t,1)
     FPy(k) = x(32);
     MPz(k) = x(33);
     
+
+end
+
+figure
+plot(FAx,FAy),grid
+hold on
+plot(FMx,FMy),grid
             
+    figure
+    plot(t,MAz)
+    ylabel('M_P [N-m]')
+    xlabel('t [s]')
+            
+
 end
