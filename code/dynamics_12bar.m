@@ -325,15 +325,47 @@ for k=1:size(t,1)
 
 end
 
-figure
-plot(FAx,FAy),grid
-hold on
-plot(FMx,FMy),grid
+if fig_dyn_12bar
+
+    figure
+    plot(FAx,FAy),grid
+    hold on
+    plot(FBx,FBy),grid
+    hold on
+    plot(FCx,FCy),grid
+    
+    figure
+    plot(FDx,FDy),grid
+    hold on
+    plot(FEx,FEy),grid
+    hold on
+    plot(FFx,FFy),grid
+    hold on
+    plot(FGx,FGy),grid
+    hold on
+    plot(FHx,FHy),grid
+    hold on
+    % plot(FIn,MIz),grid
+    % hold on
+    plot(FJx,FJy),grid
+    hold on
+    plot(FKx,FKy),grid
+    hold on
+    % plot(FLy,MLz),grid
+    % hold on
+    plot(FMx,FMy),grid
+    hold on
+    plot(FNx,FNy),grid
+    hold on
+    plot(FOx,FOy),grid
+    % hold on
+    % plot(FPy,MPz),grid
             
     figure
     plot(t,MAz)
     ylabel('M_P [N-m]')
     xlabel('t [s]')
-            
+
+end
 
 end
