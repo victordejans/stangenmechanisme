@@ -36,7 +36,7 @@ ddx11 = zeros(size(t));
 ddr4a = zeros(size(t));
 
 % fsolve options (help fsolve, help optimset)
-optim_options = optimset('Display','on');
+optim_options = optimset('Display','off');
 
 % *** loop over positions ***
 Ts = t(2) - t(1);      % timestep
@@ -146,11 +146,111 @@ for k=1:t_size
 end % loop over positions
 
 
-
 % *** create movie ***
 
 if fig_kin_12bar == 1
 
+% control of the  kinematics via position, speed and
+% acceleration of point F
+
+% position
+
+F1 = r1b*exp(1i*phiAF); % position of F based on direct measurement from point A
+
+F2 = r2c*exp(1i*(phi2 + phiA)) + r3*exp(1i*phi3) + r4*exp(1i*phi4); % Position of F by travelling from point A to C to D to F
+
+figure
+clf
+hold on
+plot(t,real(F1) - real(F2))
+xlabel('[s]')
+ylabel('[cm]')
+title(' Absolute error X position point F')
+
+figure
+clf
+hold on
+plot(t,imag(F1) - imag(F2))
+xlabel('[s]')
+ylabel('[cm]')
+title(' Absolute error Y position point F')
+
+figure
+clf
+hold on
+plot(t,1 - (real(F2)/real(F1)))
+xlabel('[s]')
+ylabel('[/]')
+title(' Relative error X position point F')
+
+figure
+clf
+hold on
+plot(t,1 - (imag(F2)/imag(F1)))
+xlabel('[s]')
+ylabel('[/]')
+title(' Relative error Y position point F')
+
+% velocity
+
+ omega2 = [zeros(size(dphi2)) zeros(size(dphi2)) dphi2];
+ omega3 = [zeros(size(dphi3)) zeros(size(dphi3)) dphi3];
+ omega4 = [zeros(size(dphi4)) zeros(size(dphi4)) dphi4];
+ 
+ AC_vec = [r2c*cos(phi2 + phiA) r2c*sin(phi2 + phiA) zeros(size(phi2))];
+ CD_vec = [r3*cos(phi3) r3*sin(phi3) zeros(size(phi3))];
+ DF_vec = [r4*cos(phi4) r4*sin(phi4) zeros(size(phi4))];
+ 
+ V_F = cross(omega2,AC_vec)+ cross(omega3,CD_vec) + cross(omega4,DF_vec);
+
+ V_F_x = V_F(:,1);
+ V_F_y = V_F(:,2); 
+ 
+figure
+clf
+hold on
+plot(t,V_F_x)
+xlabel('[s]')
+ylabel('[cm/s]')
+title(' Absolute error X velocity point F')
+
+figure
+clf
+hold on
+plot(t,V_F_y)
+xlabel('[s]')
+ylabel('[cm/s]')
+title(' Absolute error Y velocity point F')
+
+% acceleration
+
+ alpha2 = [zeros(size(ddphi2)) zeros(size(ddphi2)) ddphi2];
+ alpha3 = [zeros(size(ddphi3)) zeros(size(ddphi3)) ddphi3];
+ alpha4 = [zeros(size(ddphi4)) zeros(size(ddphi4)) ddphi4];
+ 
+ A_F = cross(omega2,cross(omega2,AC_vec)) + cross(alpha2,AC_vec) + cross(omega3,cross(omega3,CD_vec)) + cross(alpha3,CD_vec) + cross(omega4,cross(omega4,DF_vec)) + cross(alpha4,DF_vec);
+ 
+ A_F_x = A_F(:,1);
+ A_F_y = A_F(:,2);
+
+figure
+clf
+hold on
+plot(t,A_F_x)
+xlabel('[s]')
+ylabel('[cm/s^2]')
+title(' Absolute error X acceleration point F')
+
+figure
+clf
+hold on
+plot(t,A_F_y)
+xlabel('[s]')
+ylabel('[cm/s^2]')
+title(' Absolute error Y acceleration point F')
+
+% Movie
+    
 % define which positions we want as frames in our movie
 frames = 200;    % number of frames in movie
 delta = floor(t_size/frames); % time between frames
