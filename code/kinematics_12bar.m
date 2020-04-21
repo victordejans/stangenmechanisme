@@ -165,7 +165,7 @@ hold on
 plot(t,real(F1) - real(F2))
 xlabel('[s]')
 ylabel('[cm]')
-title(' Absolute error X position point F')
+title('error X position point F')
 
 figure
 clf
@@ -173,7 +173,7 @@ hold on
 plot(t,imag(F1) - imag(F2))
 xlabel('[s]')
 ylabel('[cm]')
-title(' Absolute error Y position point F')
+title('error Y position point F')
 
 figure
 clf
@@ -212,7 +212,7 @@ hold on
 plot(t,V_F_x)
 xlabel('[s]')
 ylabel('[cm/s]')
-title(' Absolute error X velocity point F')
+title('error X velocity point F')
 
 figure
 clf
@@ -220,7 +220,7 @@ hold on
 plot(t,V_F_y)
 xlabel('[s]')
 ylabel('[cm/s]')
-title(' Absolute error Y velocity point F')
+title('error Y velocity point F')
 
 % acceleration
 
@@ -239,7 +239,7 @@ hold on
 plot(t,A_F_x)
 xlabel('[s]')
 ylabel('[cm/s^2]')
-title(' Absolute error X acceleration point F')
+title('error X acceleration point F')
 
 figure
 clf
@@ -247,7 +247,7 @@ hold on
 plot(t,A_F_y)
 xlabel('[s]')
 ylabel('[cm/s^2]')
-title(' Absolute error Y acceleration point F')
+title('error Y acceleration point F')
 
 % Movie
     
