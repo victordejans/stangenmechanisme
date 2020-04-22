@@ -17,8 +17,10 @@ clear all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % program data
-fig_kin_12bar = 0;        % draw figures of kinematic analysis if 1
+fig_kin_12bar = 1;        % draw figures of kinematic analysis if 1
 fig_dyn_12bar = 1;        % draw figures of dynamic analysis if 1
+contr_kin_12bar = 1;
+contr_dyn_12bar = 1;
 
 %link lengths in cm and fixed angles in degrees
 
@@ -68,8 +70,8 @@ z_blokje11 = 40;
 inhoud_blokje11 = x_blokje11 * y_blokje11 * z_blokje11;
 
 straalWiel = 176;
-sgStaal = 7800/10^6; %kg per cm³ (onze afmetingen staan ook in cm)
-doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen even dik zijn
+sgStaal = 7800/10^6; %kg per cmï¿½ (onze afmetingen staan ook in cm)
+doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cmï¿½, veronderstel dat alle stangen even dik zijn
 
 X2 = 0;
 Y2 = 0;
@@ -161,13 +163,13 @@ number_of_time_samples = length(t);
 
 %initialisation of driver (we drijven het wiel aan)
 omega = pi();
-phi2 = omega*t - 47*pi/180; %phi2 is dus een vector met alle waarden van phi2 op de verschillende tijdstippen. we trekken de initiele hoek phi2_init=47° af.
+phi2 = omega*t - 47*pi/180; %phi2 is dus een vector met alle waarden van phi2 op de verschillende tijdstippen. we trekken de initiele hoek phi2_init=47ï¿½ af.
 dphi2 = omega*ones(number_of_time_samples,1);
 ddphi2 = zeros(number_of_time_samples,1);
 
 [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
     kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar);
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Dynamic analysis
@@ -192,7 +194,7 @@ ddphi2 = zeros(number_of_time_samples,1);
                      Y2,Y3,Y4,Y5,Y6,Y7,Y8,Y9,Y10,Y11,Y12,...
                      J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,...
                      lengte_stang9,straal_zuiger9,lengte_stang11,straal_zuiger11,...
-                     t,fig_dyn_12bar);
+                     t,fig_dyn_12bar,contr_dyn_12bar);
                  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Movie
@@ -202,4 +204,7 @@ figure
 load 12bar_movie Movie
 movie(Movie)
 
+% schets van het mechanisme in initiï¿½le toestand
+schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
 
