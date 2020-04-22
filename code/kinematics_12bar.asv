@@ -150,77 +150,168 @@ end % loop over positions
 
 if fig_kin_12bar == 1
 
-    % Movie
+% control of the  kinematics via position, speed and
+% acceleration of point F
 
-    % define which positions we want as frames in our movie
-    frames = 200;    % number of frames in movie
-    delta = floor(t_size/frames); % time between frames
-    index_vec = [1:delta:t_size]';
+% position
 
-    %fixed points
-    number_of_time_samples = length(phi2);
-    A = 0; %centrum van wiel, oorsprong van het systeem
-    E = r1a*exp(1i*phiAE); %1i is the imaginary constant
-    F = r1b*exp(1i*phiAF);
+F1 = r1b*exp(1i*phiAF); % position of F based on direct measurement from point A
 
-    % Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
-    % This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
-    % axes equal and saving the axes into "movie_axes", so that "movie_axes" can be used for further
-    % plots.
-    x_left = -r2b-50;
-    y_bottom = -max(r2b,r10-y11)-50;
-    x_right = r2b+r12+r10+50;
-    y_top = max(r1a*sin(phiAE),r1b*sin(phiAF))+50;
+F2 = r2c*exp(1i*(phi2 + phiA)) + r3*exp(1i*phi3) + r4*exp(1i*phi4); % Position of F by travelling from point A to C to D to F
 
+figure
+clf
+hold on
+plot(t,real(F1) - real(F2))
+xlabel('[s]')
+ylabel('[cm]')
+title('error X position point F')
+
+figure
+clf
+hold on
+plot(t,imag(F1) - imag(F2))
+xlabel('[s]')
+ylabel('[cm]')
+title('error Y position point F')
+
+figure
+clf
+hold on
+plot(t,1 - (real(F2)/real(F1)))
+xlabel('[s]')
+ylabel('[/]')
+title(' Relative error X position point F')
+
+figure
+clf
+hold on
+plot(t,1 - (imag(F2)/imag(F1)))
+xlabel('[s]')
+ylabel('[/]')
+title(' Relative error Y position point F')
+
+% velocity
+
+ omega2 = [zeros(size(dphi2)) zeros(size(dphi2)) dphi2];
+ omega3 = [zeros(size(dphi3)) zeros(size(dphi3)) dphi3];
+ omega4 = [zeros(size(dphi4)) zeros(size(dphi4)) dphi4];
+ 
+ AC_vec = [r2c*cos(phi2 + phiA) r2c*sin(phi2 + phiA) zeros(size(phi2))];
+ CD_vec = [r3*cos(phi3) r3*sin(phi3) zeros(size(phi3))];
+ DF_vec = [r4*cos(phi4) r4*sin(phi4) zeros(size(phi4))];
+ 
+ V_F = cross(omega2,AC_vec)+ cross(omega3,CD_vec) + cross(omega4,DF_vec);
+
+ V_F_x = V_F(:,1);
+ V_F_y = V_F(:,2); 
+ 
+figure
+clf
+hold on
+plot(t,V_F_x)
+xlabel('[s]')
+ylabel('[cm/s]')
+title('error X velocity point F')
+
+figure
+clf
+hold on
+plot(t,V_F_y)
+xlabel('[s]')
+ylabel('[cm/s]')
+title('error Y velocity point F')
+
+% acceleration
+
+ alpha2 = [zeros(size(ddphi2)) zeros(size(ddphi2)) ddphi2];
+ alpha3 = [zeros(size(ddphi3)) zeros(size(ddphi3)) ddphi3];
+ alpha4 = [zeros(size(ddphi4)) zeros(size(ddphi4)) ddphi4];
+ 
+ A_F = cross(omega2,cross(omega2,AC_vec)) + cross(alpha2,AC_vec) + cross(omega3,cross(omega3,CD_vec)) + cross(alpha3,CD_vec) + cross(omega4,cross(omega4,DF_vec)) + cross(alpha4,DF_vec);
+ 
+ A_F_x = A_F(:,1);
+ A_F_y = A_F(:,2);
+
+figure
+clf
+hold on
+plot(t,A_F_x)
+xlabel('[s]')
+ylabel('[cm/s^2]')
+title('error X acceleration point F')
+
+figure
+clf
+hold on
+plot(t,A_F_y)
+xlabel('[s]')
+ylabel('[cm/s^2]')
+title('error Y acceleration point F')
+
+% Movie
+    
+% define which positions we want as frames in our movie
+frames = 200;    % number of frames in movie
+delta = floor(t_size/frames); % time between frames
+index_vec = [1:delta:t_size]';
+
+%fixed points
+number_of_time_samples = length(phi2);
+A = 0; %centrum van wiel, oorsprong van het systeem
+E = r1a*exp(1i*phiAE); %1i is the imaginary constant
+F = r1b*exp(1i*phiAF);
+
+% Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
+% This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
+% axes equal and saving the axes into "movie_axes", so that "movie_axes" can be used for further
+% plots.
+x_left = -r2b-50;
+y_bottom = -max(r2b,r10-y11)-50;
+x_right = r2b+r12+r10+50;
+y_top = max(r1a*sin(phiAE),r1b*sin(phiAF))+50;
+
+figure(10)
+hold on
+plot([x_left, x_right], [y_bottom, y_top]);
+axis equal;
+movie_axes = axis;   %save current axes into movie_axes
+
+% draw and save movie frame
+for m=1:length(index_vec)
+    index = index_vec(m);
+    %moving points
+    B = r2b*exp(1i*phi2(index));
+    C = r2c*exp(1i*(phi2(index)+phiA));
+    D = C + r3*exp(1i*phi3(index));
+    G = E - r6*exp(1i*phi6(index));
+    H = G + r7a*exp(1i*phi7(index));
+    J = H + r7b*exp(1i*phi7(index));
+    N = B + r12*exp(1i*phi12(index));
+    O = N + r11*exp(1i*phi11);
+    M = N + r10*exp(1i*phi10(index));
+    K = M + r8b*exp(1i*phi8(index));
+    
+    loop1 = [A B C A];
+    loop2 = [C D H F];
+    loop3 = [E G H J K M O N B];
+    
     figure(10)
+    clf
     hold on
-    plot([x_left, x_right], [y_bottom, y_top]);
-    axis equal;
-    movie_axes = axis;   %save current axes into movie_axes
-
-    % draw and save movie frame
-    for m=1:length(index_vec)
-        index = index_vec(m);
-        %moving points
-        B = r2b*exp(1i*phi2(index));
-        C = r2c*exp(1i*(phi2(index)+phiA));
-        D = C + r3*exp(1i*phi3(index));
-        G = E - r6*exp(1i*phi6(index));
-        H = G + r7a*exp(1i*phi7(index));
-        J = H + r7b*exp(1i*phi7(index));
-        N = B + r12*exp(1i*phi12(index));
-        O = N + r11*exp(1i*phi11);
-        M = N + r10*exp(1i*phi10(index));
-        K = M + r8b*exp(1i*phi8(index));
-
-        loop1 = [A B C A];
-        loop2 = [C D H F];
-        loop3 = [E G H J K M O N B];
-
-        figure(10)
-        clf
-        hold on
-        plot(real(loop1),imag(loop1),'-o')
-        hold on
-        plot(real(loop2),imag(loop2),'-o')
-        hold on
-        plot(real(loop3),imag(loop3),'-o')
-
-        axis(movie_axes);     % set axes as in movie_axes
-        Movie(m) = getframe;  % save frame to a variable Film
-    end
-
-    % save movie
-    save 12bar_movie Movie
-    close(10)
-
+    plot(real(loop1),imag(loop1),'-o')
+    hold on
+    plot(real(loop2),imag(loop2),'-o')
+    hold on
+    plot(real(loop3),imag(loop3),'-o')
+    
+    axis(movie_axes);     % set axes as in movie_axes
+    Movie(m) = getframe;  % save frame to a variable Film
 end
 
-if contr_kin_12bar
-    
-    control_kin_12bar(phi2,phi3,phi4,dphi2,dphi3,dphi4,ddphi2,ddphi3,ddphi4,...
-                      r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
-                      t)
+% save movie
+save 12bar_movie Movie
+close(10)
 
 end
 

@@ -9,7 +9,7 @@ function [FAx,FAy,MAz,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FI
                      Y2,Y3,Y4,Y5,Y6,Y7,Y8,Y9,Y10,Y11,Y12,...
                      J2,J3,J4,J5,J6,J7,J8,J9,J10,J11,J12,...
                      lengte_stang9,straal_zuiger9,lengte_stang11,straal_zuiger11,...
-                     t,fig_dyn_12bar)
+                     t,fig_dyn_12bar,contr_dyn_12bar)
 
 %fixed parameter                 
 r7 = r7a+r7b;
@@ -321,7 +321,6 @@ for k=1:size(t,1)
     FOy(k) = x(31);
     FPy(k) = x(32);
     MPz(k) = x(33);
-    
 
 end
 
@@ -365,6 +364,15 @@ if fig_dyn_12bar
     plot(t,MAz)
     ylabel('M_P [N-m]')
     xlabel('t [s]')
+
+end
+
+if contr_dyn_12bar
+    
+    control_dyn_12bar(FAx,FAy,FEx,FEy,FFx,FFy,FLy,FPy,...
+                    acc2x,acc2y,acc3x,acc3y,acc4x,acc4y,acc5x,acc5y,acc6x,acc6y,acc7x,acc7y,acc8x,acc8y,acc9x,acc9y,acc10x,acc10y,acc11x,acc11y,acc12x,acc12y,...
+                    m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,...
+                    t)
 
 end
 
