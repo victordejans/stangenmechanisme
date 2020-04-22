@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.25)  19 APR 2020 23:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.25)  23 APR 2020 00:21
 entering extended mode
 **"./Kinematic and Dynamic Analysis of a Linkage.tex"
 ("Kinematic and Dynamic Analysis of a Linkage.tex"
@@ -1129,25 +1129,30 @@ stry (CN)
 \mhchem@option@minustextsidebearingleft=\dimen186
 \mhchem@option@minustextsidebearingright=\dimen187
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty"
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+\c@subfigure=\count304
+\c@subtable=\count305
+)
 ("Kinematic and Dynamic Analysis of a Linkage.aux")
 \openout1 = `"Kinematic and Dynamic Analysis of a Linkage.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
 \AtBeginShipoutBox=\box79
-Package hyperref Info: Link coloring OFF on input line 23.
+Package hyperref Info: Link coloring OFF on input line 24.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1155,11 +1160,11 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count304
+\c@section@level=\count306
 )
-LaTeX Info: Redefining \ref on input line 23.
-LaTeX Info: Redefining \pageref on input line 23.
-LaTeX Info: Redefining \nameref on input line 23.
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \nameref on input line 24.
 
 ("Kinematic and Dynamic Analysis of a Linkage.out")
 ("Kinematic and Dynamic Analysis of a Linkage.out")
@@ -1169,16 +1174,16 @@ LaTeX Info: Redefining \nameref on input line 23.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count305
+\scratchcounter=\count307
 \scratchdimen=\dimen188
 \scratchbox=\box80
-\nofMPsegments=\count306
-\nofMParguments=\count307
+\nofMPsegments=\count308
+\nofMParguments=\count309
 \everyMPshowfont=\toks31
-\MPscratchCnt=\count308
+\MPscratchCnt=\count310
 \MPscratchDim=\dimen189
-\MPnumerator=\count309
-\makeMPintoPDFobject=\count310
+\MPnumerator=\count311
+\makeMPintoPDFobject=\count312
 \everyMPtoPDFconversion=\toks32
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1289,25 +1294,25 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 .................................................
 . chemgreek info: "mapping-activated"
 . 
-. Activating mapping `default' on line 23.
+. Activating mapping `default' on line 24.
 .................................................
-\c__siunitx_mathsf_int=\count311
-LaTeX Font Info:    Try loading font information for U+msa on input line 23.
+\c__siunitx_mathsf_int=\count313
+LaTeX Font Info:    Try loading font information for U+msa on input line 24.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 23.
+LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\c__siunitx_mathtt_int=\count312
+\c__siunitx_mathtt_int=\count314
 <wvgverslag.png, id=56, 937.101pt x 464.937pt>
 File: wvgverslag.png Graphic file (type png)
 <use wvgverslag.png>
-Package pdftex.def Info: wvgverslag.png  used on input line 38.
-(pdftex.def)             Requested size: 241.49895pt x 119.8166pt.
+Package pdftex.def Info: wvgverslag.png  used on input line 41.
+(pdftex.def)             Requested size: 310.4979pt x 154.04689pt.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./wvgverslag.png>]
@@ -1315,40 +1320,65 @@ Package pdftex.def Info: wvgverslag.png  used on input line 38.
 \tf@toc=\write4
 \openout4 = `"Kinematic and Dynamic Analysis of a Linkage.toc"'.
 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 61.
 
-("Kinematic and Dynamic Analysis of a Linkage.bbl" [2])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 61.
 
-("Kinematic and Dynamic Analysis of a Linkage.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
+
+LaTeX Warning: Reference `fig:pistons' on page 2 undefined on input line 66.
+
+[2]
+<schematic.png, id=99, 526.96875pt x 395.22656pt>
+File: schematic.png Graphic file (type png)
+<use schematic.png>
+Package pdftex.def Info: schematic.png  used on input line 73.
+(pdftex.def)             Requested size: 345.0pt x 258.76372pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+("Kinematic and Dynamic Analysis of a Linkage.bbl" [3 <./schematic.png (PNG cop
+y)>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 163.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 163.
+ ("Kinematic and Dynamic Analysis of a Linkage.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 163.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 163.
 Package rerunfilecheck Info: File `"Kinematic and Dynamic Analysis of a Linkage
 ".out' has not changed.
 (rerunfilecheck)             Checksum: 3CD0A9F8AE07E391BC5FAD8E9A32F654;939.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 163.
  ) 
 Here is how much of TeX's memory you used:
- 20620 strings out of 493301
- 391700 string characters out of 3138717
- 470958 words of memory out of 3000000
- 23956 multiletter control sequences out of 15000+200000
+ 20700 strings out of 493301
+ 392976 string characters out of 3138717
+ 473588 words of memory out of 3000000
+ 24026 multiletter control sequences out of 15000+200000
  541302 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,6n,42p,10417b,848s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,15n,42p,10417b,846s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmti10.pfb>
-Output written on "Kinematic and Dynamic Analysis of a Linkage.pdf" (3 pages, 4
-28498 bytes).
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on "Kinematic and Dynamic Analysis of a Linkage.pdf" (4 pages, 4
+69288 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 110 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 154 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 

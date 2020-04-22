@@ -1,6 +1,8 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Kinematic and Dynamic Analysis of a Linkage.aux
-The style file: unsrt.bst
+The style file: plain.bst
 Database file #1: walschaerts.bib
 Warning--entry type for "ove06" isn't style-file defined
 --line 1 of file walschaerts.bib
-(There was 1 warning)
+Warning--entry type for "steel1" isn't style-file defined
+--line 9 of file walschaerts.bib
+(There were 2 warnings)

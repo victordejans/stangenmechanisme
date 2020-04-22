@@ -9,7 +9,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-close
+close all
 clear all
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,9 +18,9 @@ clear all
 
 % program data
 fig_kin_12bar = 1;        % draw figures of kinematic analysis if 1
-fig_dyn_12bar = 1;        % draw figures of dynamic analysis if 1
-contr_kin_12bar = 1;
-contr_dyn_12bar = 1;
+fig_dyn_12bar = 0;        % draw figures of dynamic analysis if 1
+contr_kin_12bar = 0;
+contr_dyn_12bar = 0;
 
 %link lengths in cm and fixed angles in degrees
 
@@ -70,8 +70,8 @@ z_blokje11 = 40;
 inhoud_blokje11 = x_blokje11 * y_blokje11 * z_blokje11;
 
 straalWiel = 176;
-sgStaal = 7800/10^6; %kg per cm� (onze afmetingen staan ook in cm)
-doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm�, veronderstel dat alle stangen even dik zijn
+sgStaal = 7800/10^6; %kg per cm^3 (onze afmetingen staan ook in cm)
+doorsnedeStang = 10^2 * pi(); %oppervlak van doorsnede van een stang in cm^2, veronderstel dat alle stangen even dik zijn
 
 X2 = 0;
 Y2 = 0;
@@ -179,8 +179,8 @@ ddphi2 = zeros(number_of_time_samples,1);
 %                       I is de prismatische joint van 5 op 4
 %                       K is het scharnier tussen 8 en 9
 %                       L is de prismatische joint van 9 op de grond
-%                       N is het scharnier van 10 op 11
-%                       O is het scharnier van 12 op 11
+%                       N is het scharnier van 12 op 11
+%                       O is het scharnier van 10 op 11
 %                       P is de prismatic van 11 op de grond
 
 [FAx,FAy,MAz,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FIn,MIz,FJx,FJy,FKx,FKy,FLy,MLz,FMx,FMy,FNx,FNy,FOx,FOy,FPy,MPz]...
@@ -205,6 +205,6 @@ load 12bar_movie Movie
 movie(Movie)
 
 % schets van het mechanisme in initi�le toestand
-schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
     phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
 
