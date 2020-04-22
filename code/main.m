@@ -69,7 +69,7 @@ inhoud_blokje11 = x_blokje11 * y_blokje11 * z_blokje11;
 
 straalWiel = 176;
 sgStaal = 7800/10^6; %kg per cm³ (onze afmetingen staan ook in cm)
-doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen evend dik zijn
+doorsnedeStang = 2^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen even dik zijn
 
 X2 = 0;
 Y2 = 0;
