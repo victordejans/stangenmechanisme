@@ -151,59 +151,159 @@ if fig_kin_12bar
     
     figure
     
-    subplot(5,2,1)
-    plot(t,phi3)
-    xlabel('Time (s)')
-    ylabel('\phi_3 (rad)')
-    
-    subplot(5,2,2)
-    plot(t,phi4)
-    xlabel('Time (s)')
-    ylabel('\phi_4 (rad)')
-    
-    subplot(5,2,3)
-    plot(t,r4a)
-    xlabel('Time (s)')
-    ylabel('r_{4a} (cm)')
-    
-    subplot(5,2,4)
-    plot(t,phi6)
-    xlabel('Time (s)')
-    ylabel('\phi_6 (rad)')
-    
-    subplot(5,2,5)
-    plot(t,phi7)
-    xlabel('Time (s)')
-    ylabel('\phi_7 (rad)')
-    
-    subplot(5,2,6)
-    plot(t,phi8)
-    xlabel('Time (s)')
-    ylabel('\phi_8 (rad)')
-    
-    subplot(5,2,7)
-    plot(t,x9)
-    xlabel('Time (s)')
-    ylabel('x_9 (cm)')
-    
-    subplot(5,2,8)
-    plot(t,phi10)
-    xlabel('Time (s)')
-    ylabel('\phi_{10} (rad)')
-    
-    subplot(5,2,9)
-    plot(t,x11)
-    xlabel('Time (s)')
-    ylabel('x_{11} (cm)')
-    
-    subplot(5,2,10)
-    plot(t,phi12)
-    xlabel('Time (s)')
-    ylabel('\phi_{12} (rad)')
+        subplot(5,2,1)
+        plot(t,phi3)
+        xlabel('Time (s)')
+        ylabel('\phi_3 (rad)')
 
+        subplot(5,2,2)
+        plot(t,phi4)
+        xlabel('Time (s)')
+        ylabel('\phi_4 (rad)')
 
+        subplot(5,2,3)
+        plot(t,r4a)
+        xlabel('Time (s)')
+        ylabel('r_{4a} (cm)')
 
+        subplot(5,2,4)
+        plot(t,phi6)
+        xlabel('Time (s)')
+        ylabel('\phi_6 (rad)')
 
+        subplot(5,2,5)
+        plot(t,phi7)
+        xlabel('Time (s)')
+        ylabel('\phi_7 (rad)')
+
+        subplot(5,2,6)
+        plot(t,phi8)
+        xlabel('Time (s)')
+        ylabel('\phi_8 (rad)')
+
+        subplot(5,2,7)
+        plot(t,x9)
+        xlabel('Time (s)')
+        ylabel('x_9 (cm)')
+
+        subplot(5,2,8)
+        plot(t,phi10)
+        xlabel('Time (s)')
+        ylabel('\phi_{10} (rad)')
+
+        subplot(5,2,9)
+        plot(t,x11)
+        xlabel('Time (s)')
+        ylabel('x_{11} (cm)')
+
+        subplot(5,2,10)
+        plot(t,phi12)
+        xlabel('Time (s)')
+        ylabel('\phi_{12} (rad)')
+
+    figure
+    
+        subplot(5,2,1)
+        plot(t,dphi3)
+        xlabel('Time (s)')
+        ylabel('\omega_3 (rad)')
+
+        subplot(5,2,2)
+        plot(t,dphi4)
+        xlabel('Time (s)')
+        ylabel('\omega_4 (rad)')
+
+        subplot(5,2,3)
+        plot(t,dr4a)
+        xlabel('Time (s)')
+        ylabel('v_{4a} (cm)')
+
+        subplot(5,2,4)
+        plot(t,dphi6)
+        xlabel('Time (s)')
+        ylabel('\omega_6 (rad)')
+
+        subplot(5,2,5)
+        plot(t,dphi7)
+        xlabel('Time (s)')
+        ylabel('\omega_7 (rad)')
+
+        subplot(5,2,6)
+        plot(t,dphi8)
+        xlabel('Time (s)')
+        ylabel('\omega_8 (rad)')
+
+        subplot(5,2,7)
+        plot(t,dx9)
+        xlabel('Time (s)')
+        ylabel('v_9 (cm)')
+
+        subplot(5,2,8)
+        plot(t,dphi10)
+        xlabel('Time (s)')
+        ylabel('\omega_{10} (rad)')
+
+        subplot(5,2,9)
+        plot(t,dx11)
+        xlabel('Time (s)')
+        ylabel('v_{11} (cm)')
+
+        subplot(5,2,10)
+        plot(t,dphi12)
+        xlabel('Time (s)')
+        ylabel('\omega_{12} (rad)')
+
+    figure
+        
+        subplot(5,2,1)
+        plot(t,ddphi3)
+        xlabel('Time (s)')
+        ylabel('\alpha_3 (rad)')
+
+        subplot(5,2,2)
+        plot(t,ddphi4)
+        xlabel('Time (s)')
+        ylabel('\alpha_4 (rad)')
+
+        subplot(5,2,3)
+        plot(t,ddr4a)
+        xlabel('Time (s)')
+        ylabel('a_{4a} (cm)')
+
+        subplot(5,2,4)
+        plot(t,ddphi6)
+        xlabel('Time (s)')
+        ylabel('\alpha_6 (rad)')
+
+        subplot(5,2,5)
+        plot(t,ddphi7)
+        xlabel('Time (s)')
+        ylabel('\alpha_7 (rad)')
+
+        subplot(5,2,6)
+        plot(t,ddphi8)
+        xlabel('Time (s)')
+        ylabel('\alpha_8 (rad)')
+
+        subplot(5,2,7)
+        plot(t,ddx9)
+        xlabel('Time (s)')
+        ylabel('a_9 (cm)')
+
+        subplot(5,2,8)
+        plot(t,ddphi10)
+        xlabel('Time (s)')
+        ylabel('\alpha_{10} (rad)')
+
+        subplot(5,2,9)
+        plot(t,ddx11)
+        xlabel('Time (s)')
+        ylabel('a_{11} (cm)')
+
+        subplot(5,2,10)
+        plot(t,ddphi12)
+        xlabel('Time (s)')
+        ylabel('\alpha_{12} (rad)')
 
 
 end

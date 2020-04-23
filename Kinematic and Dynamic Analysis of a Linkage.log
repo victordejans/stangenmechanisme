@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.25)  23 APR 2020 23:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.2.25)  24 APR 2020 00:47
 entering extended mode
 **"./Kinematic and Dynamic Analysis of a Linkage.tex"
 ("Kinematic and Dynamic Analysis of a Linkage.tex"
@@ -1394,64 +1394,73 @@ File: piston11.png Graphic file (type png)
 <use piston11.png>
 Package pdftex.def Info: piston11.png  used on input line 141.
 (pdftex.def)             Requested size: 137.9979pt x 106.45534pt.
-[3 <./schematic.png (PNG copy)>] [4 <./piston9.png> <./piston11.png>]pdfTeX war
-ning (ext4): destination with the same identifier (name{equation.2.1}) has been
- already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.187 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{equation.2.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.191 \begin{equation}
-                      
-<kinpos.png, id=132, 844.65562pt x 697.10437pt>
+[3 <./schematic.png (PNG copy)>] [4 <./piston9.png> <./piston11.png>]
+<kinpos.png, id=130, 844.65562pt x 697.10437pt>
 File: kinpos.png Graphic file (type png)
 <use kinpos.png>
-Package pdftex.def Info: kinpos.png  used on input line 254.
+Package pdftex.def Info: kinpos.png  used on input line 255.
 (pdftex.def)             Requested size: 345.0pt x 284.74031pt.
-
-Overfull \hbox (4.77213pt too wide) in paragraph at lines 269--270
-\OT1/cmr/m/n/10 The ac-cel-er-a-tion anal-y-sis finds the un-known vari-ables $
-[]$, $[]$, $[]$,
- []
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{equation.2.
-3}) has been already used, duplicate ignored
+ [5pdfTeX warning (ext4): destination with the same identifier (name{equation.2
+.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.271 \subsection
-                 {Checking the results}pdfTeX warning (ext4): destination with 
-the same identifier (name{equation.2.4}) has been already used, duplicate ignor
-ed
+l.268 T
+       he first order time derivatives of the loop closure equations~\ref{eq...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.2}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.271 \subsection
-                 {Checking the results}] [6 <./kinpos.png (PNG copy)>]
+l.268 T
+       he first order time derivatives of the loop closure equations~\ref{eq...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.3}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.268 T
+       he first order time derivatives of the loop closure equations~\ref{eq...
+pdfTeX warning (ext4): destination with the same identifier (name{equation.2.4}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.268 T
+       he first order time derivatives of the loop closure equations~\ref{eq...
+] [6 <./kinpos.png (PNG copy)>]
+<kinvel.png, id=151, 526.96875pt x 395.22656pt>
+File: kinvel.png Graphic file (type png)
+<use kinvel.png>
+Package pdftex.def Info: kinvel.png  used on input line 277.
+(pdftex.def)             Requested size: 345.0pt x 258.76372pt.
+ [7 <./kinvel.png (PNG copy)>]
+<kinacc.png, id=159, 526.96875pt x 395.22656pt>
+File: kinacc.png Graphic file (type png)
+<use kinacc.png>
+Package pdftex.def Info: kinacc.png  used on input line 293.
+(pdftex.def)             Requested size: 345.0pt x 258.76372pt.
+
 ("Kinematic and Dynamic Analysis of a Linkage.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 285.
- [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 285.
-
-("Kinematic and Dynamic Analysis of a Linkage.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 285.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 285.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 314.
+ [8 <./kinacc.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 314.
+ ("Kinematic and Dynamic Analysis of a Linkage.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 314.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 314.
 Package rerunfilecheck Info: File `"Kinematic and Dynamic Analysis of a Linkage
 ".out' has not changed.
 (rerunfilecheck)             Checksum: 118CF4E31DF2F8848581979D42F1E4A4;868.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 285.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 314.
  ) 
 Here is how much of TeX's memory you used:
- 20971 strings out of 493301
- 397165 string characters out of 3138717
- 484210 words of memory out of 3000000
- 24272 multiletter control sequences out of 15000+200000
+ 20987 strings out of 493301
+ 397376 string characters out of 3138717
+ 483667 words of memory out of 3000000
+ 24283 multiletter control sequences out of 15000+200000
  541302 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,15n,42p,10417b,765s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,15n,42p,10417b,737s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1473,10 +1482,10 @@ C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Kinematic and Dynamic Analysis of a Linkage.pdf" (7 pages, 6
-72195 bytes).
+Output written on "Kinematic and Dynamic Analysis of a Linkage.pdf" (8 pages, 7
+64869 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 42 named destinations out of 1000 (max. 500000)
+ 132 words of extra memory for PDF output out of 10000 (max. 10000000)
 

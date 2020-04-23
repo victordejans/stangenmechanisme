@@ -2,12 +2,12 @@
 \contentsline {section}{\numberline {1}Definition of the mechanism}{2}{section.1}
 \contentsline {subsection}{\numberline {1.1}Schematic of the mechanism and definition of the parameters}{2}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Motion analysis}{3}{subsection.1.2}
-\contentsline {section}{\numberline {2}Kinematic analysis}{3}{section.2}
+\contentsline {section}{\numberline {2}Kinematic analysis}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Position analysis}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Velocity analysis}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Velocity analysis}{7}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Acceleration analysis}{7}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Checking the results}{7}{subsection.2.4}
-\contentsline {section}{\numberline {3}Dynamic analysis}{7}{section.3}
-\contentsline {subsection}{\numberline {3.1}Inverse dynamic analysis without gravity}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Inverse dynamic analysis with gravity}{7}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Checking the results}{7}{subsection.3.3}
+\contentsline {subsection}{\numberline {2.4}Checking the results}{8}{subsection.2.4}
+\contentsline {section}{\numberline {3}Dynamic analysis}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Inverse dynamic analysis without gravity}{8}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Inverse dynamic analysis with gravity}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Checking the results}{8}{subsection.3.3}

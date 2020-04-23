@@ -60,7 +60,7 @@ Although in real life the pistons are the driving bodies and the wheels is the d
 
 \subsection{Schematic of the mechanism and definition of the parameters}
 
-As shown in figure~\ref{fig:schematic}, the linkage has 12 bodies.
+As shown in figure~\ref{fig:schematic}, the linkage has twelve bodies.
 
 \begin{itemize}
 	\item Body \textbf{(1)} is the train. This is the ground to which other bodies are fixed.
@@ -151,10 +151,10 @@ All bodies in this linkage are made of steel which has a density \(\rho_{steel} 
 
 \subsection{Motion analysis}
 
-The Walschaerts valve gear is a 12 bar linkage system with 16 joints. This makes the mobility \(M=3*(12-1)-16*2=1\). This means the system has one degree of freedom.
+The Walschaerts valve gear is a twelve bar linkage system with sixteen joints. This makes the mobility \(M=3*(12-1)-16*2=1\). This means the system has one degree of freedom.
 
 
-%\newpage
+\newpage
 
 \section{Kinematic analysis}
 \label{sec:kin}
@@ -165,6 +165,7 @@ The driving torque is applied to body (2) in point (A) and makes it turn with a 
 
 \begin{equation}
 	\phi_2(t) = \pi*t~rad \\
+	\label{eq:phi2}
 \end{equation}
 \begin{equation}
 	\diff{\phi_2(t)}{t} = \pi~rad/s \\
@@ -174,13 +175,13 @@ The driving torque is applied to body (2) in point (A) and makes it turn with a 
 	\diff[2]{\phi_2(t)}{t} = 0~rad/s^2\\
 \end{equation}
 
-The kinematic analysis looks for the positions, velocities and accelerations of the other bodies in the linkage. The 10 unknowns are \(\phi_3(t)\), \(\phi_4(t)\), \(r_{4a}(t)\) (the length of the part of bar (4) between joint (D) and joint (I)), \(\phi_6(t)\), \(\phi_7(t)\), \(\phi_8(t)\), \(x_9(t)\) (the x coordinate of joint (K)), \(\phi_{10}(t)\), \(x_{11}(t)\) (the x coordinate of joint (N)) and \(\phi_{12}(t)\) and their first and second order derivatives. The angles are defined in figure~\ref{fig:schematic}.
+The kinematic analysis looks for the positions, velocities and accelerations of the other bodies in the linkage. The ten unknowns are \(\phi_3(t)\), \(\phi_4(t)\), \(r_{4a}(t)\) (the length of the part of bar (4) between joint (D) and joint (I)), \(\phi_6(t)\), \(\phi_7(t)\), \(\phi_8(t)\), \(x_9(t)\) (the x coordinate of joint (K)), \(\phi_{10}(t)\), \(x_{11}(t)\) (the x coordinate of joint (N)) and \(\phi_{12}(t)\) and their first and second order derivatives. The angles are defined in figure~\ref{fig:schematic}.
 
 The analysis is done for 201 time samples of 0,05~s each.
 
 \subsection{Position analysis}
 
-In order to find the 10 unknown positions, a set of 10 "loop closure equations" is solved for each time step. A loop closure equation is the sum of all x or y vector components of linkage bodies that form a closed loop. These sums are all equal to zero. This results in a set of 10 equations which are listed below in vector form \footnote{These five vector equations define the ten equations because each vector can be split in one x component and one y component.}.
+In order to find the ten unknown positions, a set of ten "loop closure equations" is solved for each time step. A loop closure equation is the sum of all x or y vector components of linkage bodies that form a closed loop. These sums are all equal to zero. This results in a set of ten equations which are listed below in vector form \footnote{These five vector equations define the ten equations because each vector can be split in one x component and one y component.}.
 
 
 \begin{subequations}
@@ -244,7 +245,7 @@ In order to find the 10 unknown positions, a set of 10 "loop closure equations" 
 %	\end{equation}
 %	\end{subequations}
 
-The MATLAB function \texttt{loop\char`_closure\char`_equations.m} lists all loop closure equations. In this case, we get a nonlinear system of equations because of the multiplication of the unknown variables \(\phi_4(t)\) and \(r_{4a}(t)\). The MATLAB function \texttt{fsolve} is used to solve this nonlinear set.
+The MATLAB function \texttt{loop\char`_closure\char`_eqs.m} lists all loop closure equations. In this case, we get a nonlinear system of equations because of the multiplication of the unknown variables \(\phi_4(t)\) and \(r_{4a}(t)\). The MATLAB function \texttt{fsolve} is used to solve this nonlinear set.
 
 After solving this system for each of the 201 time samples, the MATLAB code returns values for each of the ten unknowns in function of the time. The plots of these ten variables are shown in figure~\ref{fig:kinpos}.
 
@@ -253,7 +254,7 @@ After solving this system for each of the 201 time samples, the MATLAB code retu
 	
 	\includegraphics[width = \textwidth]{kinpos.png}
 	
-	\caption{Angles of the bodies (to the positive x axis) and x coordinates of the pistons (according to (A)) in function of time with given sinusoidal \(\phi_2\).}
+	\caption{Angles of the bodies (to the positive x axis), distance from joint (D) to (H) and x coordinates of the pistons (according to (A)) in function of time.}
 	\label{fig:kinpos}
 	
 \end{figure}
@@ -262,11 +263,39 @@ After solving this system for each of the 201 time samples, the MATLAB code retu
 
 \subsection{Velocity analysis}
 
-The velocity analysis finds the unknown variables \(\diff{\phi_3(t)}{t}\), \(\diff{\phi_4(t)}{t}\), \(\diff{r_{4a}(t)}{t}\), \(\diff{\phi_6(t)}{t}\), \(\diff{\phi_7(t)}{t}\), \(\diff{\phi_8(t)}{t}\), \(\diff{x_9(t)}{t}\), \(\diff{\phi_{10}(t)}{t}\), \(\diff{x_{11}(t)}{t}\) and \(\diff{\phi_{12}(t)}{t}\).
+The velocity analysis finds the ten unknown variables \(\diff{\phi_3(t)}{t}\), \(\diff{\phi_4(t)}{t}\), \(\diff{r_{4a}(t)}{t}\), \(\diff{\phi_6(t)}{t}\), \(\diff{\phi_7(t)}{t}\), \(\diff{\phi_8(t)}{t}\), \(\diff{x_9(t)}{t}\), \(\diff{\phi_{10}(t)}{t}\), \(\diff{x_{11}(t)}{t}\) and \(\diff{\phi_{12}(t)}{t}\).
+
+The first order time derivatives of the loop closure equations~\ref{eq:loopclosurevec} are now used to find the unknown velocities. They are listed in the MATLAB function \texttt{velocity\char`_eqs}. The first order derivative of body (2) is known and is defined in equation~\ref{eq:dphi2}. 
+
+The new set of loop closure equations is now linear because the derivative of the multiplication of \(\phi_4(t)\) and \(r_{4a}(t)\) contains no multiplication of the now unknown \(\diff{\phi_4(t)}{t}\) and \(\diff{r_{4a}(t)}{t}\).
+
+The MATLAB code solves this system and returns values for the velocities of the bodies in function of the time. They are plotted in figure~\ref{fig:kinvel}.
+
+\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width = \textwidth]{kinvel.png}
+	
+	\caption{Angular velocities of the bodies (to the positive x axis) and linear velocities of joint (H) (according to (D)) and of the pistons (according to (A)) in function of time.}
+	\label{fig:kinvel}
+	
+\end{figure}
 
 \subsection{Acceleration analysis}
 
-The acceleration analysis finds the unknown variables \(\diff[2]{\phi_3(t)}{t}\), \(\diff[2]{\phi_4(t)}{t}\), \(\diff[2]{r_{4a}(t)}{t}\), \(\diff[2]{\phi_6(t)}{t}\), \(\diff[2]{\phi_7(t)}{t}\), \(\diff[2]{\phi_8(t)}{t}\), \(\diff[2]{x_9(t)}{t}\), \(\diff[2]{\phi_{10}(t)}{t}\), \(\diff[2]{x_{11}(t)}{t}\) and \(\diff[2]{\phi_{12}(t)}{t}\).
+The acceleration analysis finds the ten unknown variables \(\diff[2]{\phi_3(t)}{t}\), \(\diff[2]{\phi_4(t)}{t}\), \(\diff[2]{r_{4a}(t)}{t}\), \(\diff[2]{\phi_6(t)}{t}\), \(\diff[2]{\phi_7(t)}{t}\), \(\diff[2]{\phi_8(t)}{t}\), \(\diff[2]{x_9(t)}{t}\), \(\diff[2]{\phi_{10}(t)}{t}\), \(\diff[2]{x_{11}(t)}{t}\) and \(\diff[2]{\phi_{12}(t)}{t}\).
+
+This happens analogously to the velocity analysis. The MATLAB code now solves a linear set of the second order time derivatives of the ten loop closure equations. These are listed in the MATLAB function \texttt{acceleration\char`_eqs}. The plots of the accelerations of the bodies are in figure~\ref{fig:kinacc}.
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width = \textwidth]{kinacc.png}
+	
+	\caption{Angular accelerations of the bodies (to the positive x axis) and linear accelerations of joint (H) (according to (D)) and of the pistons (according to (A)) in function of time.}
+	\label{fig:kinacc}
+	
+\end{figure}
 
 \subsection{Checking the results}
 
