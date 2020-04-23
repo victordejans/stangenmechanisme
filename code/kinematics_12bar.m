@@ -1,6 +1,6 @@
 function [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
     kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar)
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar,movie_12bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
 % copy the vector each time we add an element).
@@ -146,9 +146,73 @@ for k=1:t_size
 end % loop over positions
 
 
+
+if fig_kin_12bar
+    
+    figure
+    
+    subplot(5,2,1)
+    plot(t,phi3)
+    xlabel('Time (s)')
+    ylabel('\phi_3 (rad)')
+    
+    subplot(5,2,2)
+    plot(t,phi4)
+    xlabel('Time (s)')
+    ylabel('\phi_4 (rad)')
+    
+    subplot(5,2,3)
+    plot(t,r4a)
+    xlabel('Time (s)')
+    ylabel('r_{4a} (cm)')
+    
+    subplot(5,2,4)
+    plot(t,phi6)
+    xlabel('Time (s)')
+    ylabel('\phi_6 (rad)')
+    
+    subplot(5,2,5)
+    plot(t,phi7)
+    xlabel('Time (s)')
+    ylabel('\phi_7 (rad)')
+    
+    subplot(5,2,6)
+    plot(t,phi8)
+    xlabel('Time (s)')
+    ylabel('\phi_8 (rad)')
+    
+    subplot(5,2,7)
+    plot(t,x9)
+    xlabel('Time (s)')
+    ylabel('x_9 (cm)')
+    
+    subplot(5,2,8)
+    plot(t,phi10)
+    xlabel('Time (s)')
+    ylabel('\phi_{10} (rad)')
+    
+    subplot(5,2,9)
+    plot(t,x11)
+    xlabel('Time (s)')
+    ylabel('x_{11} (cm)')
+    
+    subplot(5,2,10)
+    plot(t,phi12)
+    xlabel('Time (s)')
+    ylabel('\phi_{12} (rad)')
+
+
+
+
+
+
+end
+
+
+
 % *** create movie ***
 
-if fig_kin_12bar == 1
+if movie_12bar == 1
 
     % Movie
 
