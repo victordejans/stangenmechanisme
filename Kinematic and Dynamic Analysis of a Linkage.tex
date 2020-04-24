@@ -287,7 +287,7 @@ The acceleration analysis finds the ten unknown variables \(\diff[2]{\phi_3(t)}{
 
 This happens analogously to the velocity analysis. The MATLAB code now solves a linear set of the second order time derivatives of the ten loop closure equations. These are listed in the MATLAB function \texttt{acceleration\char`_eqs}. The plots of the accelerations of the bodies are in figure~\ref{fig:kinacc}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	
 	\includegraphics[width = \textwidth]{kinacc.png}
@@ -297,7 +297,81 @@ This happens analogously to the velocity analysis. The MATLAB code now solves a 
 	
 \end{figure}
 
+\clearpage
+
 \subsection{Checking the results}
+
+When writing the equations, there are places where errors can easily sneak in (e.g. notation errors). To check whether the generated results are correct, control calculations have been made. This section will be about checking the kinematics.
+
+\subsubsection{Checking the position}
+
+To check the position, we calculate the position of the joint (F) in two different ways. First, because (F) is a stationary point, it can be calculated via the given distance and angle from (A):
+
+\begin{equation}
+	F1 = r_{1b}*e^{i*\phi_{AF}}
+\end{equation}
+
+The second way is by following a path of consecutive points in the mechanism:
+
+\begin{equation}
+	F2 = r_{2c}*e^{i*(\phi_2 + \phi_A)} + r_3*e^{i*\phi_3} + r_4*e^{i*\phi_4}
+\end{equation}
+
+The x and y components of these vectors can be found by taking respectively the real and imaginary part of these complex numbers. The difference between F1 and F2 is plotted in figure \ref{fig:contrpos}. The x and y components match well, there is nothing special to report there. 
+
+The relative error \(1 – F1/F2\) takes on values of the order of \(10^{-12}\) and the absolute error \(F1-F2\) is of the order of \(10^{-10}\) cm. This is not yet near machine precision, so the error is probably a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
+
+We can also visually inspect the position results by watching an animation of the mechanism. In the animation in the attached MATLAB code \footnote{The animation pops up when running \texttt{main.m} with \texttt{movie\char`_12bar = 1;} on line 22 of the code} one can see that point (F) (like (A) and (E)) doesn’t move.
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width = \textwidth]{contrpos.png}
+	
+	\caption{Position errors in coordinates of point (F) in function of time.}
+	\label{fig:contrpos}
+	
+\end{figure}
+
+\subsubsection{Checking the velocity and the acceleration}
+
+Checking the speed and acceleration is done in the same way. Because (F) is a stationary point, its velocity and acceleration have to be equal to zero at all times. This means that by plotting the velocity or acceleration of (F) calculated via a path of consecutive points from (A) to (F), one will plot the error.
+
+The velocity of point (F) (via (A)) can be calculated as follows:
+
+\begin{equation}
+	\vec{v_F} = \vec{\omega_2}\times\vec{AC}+ \vec{\omega_3}\times\vec{CD}+ \vec{\omega_4}\times\vec{DF}
+\end{equation}
+
+Figure~\ref{fig:contrvel} presents the error in velocity of point (F). The x and y components match well, there is nothing special to report there. Except for the two deviating values, this error seems to stay perfectly at 0. After zooming in we can see that this error doesn’t perfectly equal 0 but is instead in the order of \(10^{-14} \si{cm/s}\). This is starting to approach machine precision but is still not as precise. Again, the error is a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
+
+The acceleration of point (F) (via (A)) can be calculated as follows:
+
+\begin{equation}
+	\vec{a_F} = \vec{\omega_2}\times(\vec{\omega_2}\times\vec{AC}) + \vec{\alpha_2}\times\vec{AC} + \vec{\omega_3}\times(\vec{\omega_3}\times\vec{CD}) + \vec{\alpha_3}\times\vec{CD} + \vec{\omega_4}\times(\vec{\omega_4}\times\vec{DF}) + \vec{\alpha_4}\times\vec{DF}
+\end{equation}
+
+Figure~\ref{fig:contracc} shows the acceleration error. Once again the x and y components match so there is nothing special to report. The error here is from the order of \(10^{-14} \si{cm/s^2}\). Like with the position and velocity errors, this isn’t machine precision yet but a deviation introduced by \texttt{fsolve}. It’s small enough to consider this check successful.
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width = \textwidth]{contrvel.png}
+	
+	\caption{Velocity errors in coordinates of point (F) in function of time.}
+	\label{fig:contrvel}
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width = \textwidth]{contracc.png}
+	
+	\caption{Acceleration errors in coordinates of point (F) in function of time.}
+	\label{fig:contracc}
+	
+\end{figure}
 
 \section{Dynamic analysis}
 
@@ -306,6 +380,38 @@ This happens analogously to the velocity analysis. The MATLAB code now solves a 
 \subsection{Inverse dynamic analysis with gravity}
 
 \subsection{Checking the results}
+
+For checking the dynamics we make use of the method of shaking forces, in which we determine the reaction forces that act on the ground. These reaction forces are the opposites of the internal forces \(F_A\), \(F_F\) and \(F_E\) . The shaking forces are equal to these reaction forces on the ground: 
+
+\begin{equation}
+	F_{shake,x,1} = F_{A,x} + F{F_x} + F{E,x}
+\end{equation}
+
+and can also be calculated as follows (for the x components):
+
+\begin{equation}
+\begin{split}
+	F_{shake,x,2} =  a_{2,x}*m_2 + a_{3,x}*m_3 + a_{4,x}*m_4 + a_{5,x}*m_5 \\ 
+	 +a_{6,x}*m_6	+ a_{7,x}*m_7 + a_{8,x}*m_8 + a_{9,x}*m_9 \\
+	 + a_{10,x}*m_{10} + a_{11,x}*m_{11} + a_{12,x}*m_{12}
+\end{split}
+\end{equation}
+
+
+
+The y components are calculated analogously.
+
+We make the sum over all linkages except for the ground. The error of the shaking forces \(F_{shake,x,1}-F_{shake,x,2}\)is plotted in  figure \ref{fig:contrdyn}. The x and y components match well enough, even though one is one order of magnitude greater than the other. The error is from the order of \(10^{-9} \si{newton}\) for the x component and \(10^{-10} \si{newton}\) for the y component. This error is greater than machine precision, but this is a result of the used math algorithm. The error is small enough to consider this check successful.
+
+\begin{figure}
+	\centering
+	
+	\includegraphics[width = \textwidth]{contrdyn.png}
+	
+	\caption{Error of the shaking forces in function of time.}
+	\label{fig:contrdyn}
+	
+\end{figure}
 
 \bibliographystyle{plain}
 \bibliography{walschaerts}

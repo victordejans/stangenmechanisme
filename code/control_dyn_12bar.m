@@ -11,16 +11,17 @@ function control_dyn_12bar(FAx,FAy,FEx,FEy,FFx,FFy,FLy,FPy,...
 
     % Plot control Fshake in X direction
     figure
+    
+    subplot(1,2,1)
     plot(t,Fshake_x_1 - Fshake_x_2)
-    ylabel('Fshake_x [N]')
-    xlabel('t [s]')
-    title('error of shaking forces in x direction')
+    ylabel('Error of F_{shake,x} (N)')
+    xlabel('Time (s)')
+    
     
     % Plot control Fshake in y direction
-    figure
+    subplot(1,2,2)
     plot(t,Fshake_y_1 - Fshake_y_2)
-    ylabel('Fshake_y [N]')
-    xlabel('t [s]')
-    title('error of shaking forces in y direction')
+    ylabel('Error of F_{shake,y} (N)')
+    xlabel('Time (s)')
     
 end

@@ -206,104 +206,104 @@ if fig_kin_12bar
         subplot(5,2,1)
         plot(t,dphi3)
         xlabel('Time (s)')
-        ylabel('\omega_3 (rad)')
+        ylabel('\omega_3 (rad/s)')
 
         subplot(5,2,2)
         plot(t,dphi4)
         xlabel('Time (s)')
-        ylabel('\omega_4 (rad)')
+        ylabel('\omega_4 (rad/s)')
 
         subplot(5,2,3)
         plot(t,dr4a)
         xlabel('Time (s)')
-        ylabel('v_{4a} (cm)')
+        ylabel('v_{4a} (cm/s)')
 
         subplot(5,2,4)
         plot(t,dphi6)
         xlabel('Time (s)')
-        ylabel('\omega_6 (rad)')
+        ylabel('\omega_6 (rad/s)')
 
         subplot(5,2,5)
         plot(t,dphi7)
         xlabel('Time (s)')
-        ylabel('\omega_7 (rad)')
+        ylabel('\omega_7 (rad/s)')
 
         subplot(5,2,6)
         plot(t,dphi8)
         xlabel('Time (s)')
-        ylabel('\omega_8 (rad)')
+        ylabel('\omega_8 (rad/s)')
 
         subplot(5,2,7)
         plot(t,dx9)
         xlabel('Time (s)')
-        ylabel('v_9 (cm)')
+        ylabel('v_9 (cm/s)')
 
         subplot(5,2,8)
         plot(t,dphi10)
         xlabel('Time (s)')
-        ylabel('\omega_{10} (rad)')
+        ylabel('\omega_{10} (rad/s)')
 
         subplot(5,2,9)
         plot(t,dx11)
         xlabel('Time (s)')
-        ylabel('v_{11} (cm)')
+        ylabel('v_{11} (cm/s)')
 
         subplot(5,2,10)
         plot(t,dphi12)
         xlabel('Time (s)')
-        ylabel('\omega_{12} (rad)')
+        ylabel('\omega_{12} (rad/s)')
 
     figure
         
         subplot(5,2,1)
         plot(t,ddphi3)
         xlabel('Time (s)')
-        ylabel('\alpha_3 (rad)')
+        ylabel('\alpha_3 (rad/s²)')
 
         subplot(5,2,2)
         plot(t,ddphi4)
         xlabel('Time (s)')
-        ylabel('\alpha_4 (rad)')
+        ylabel('\alpha_4 (rad/s²)')
 
         subplot(5,2,3)
         plot(t,ddr4a)
         xlabel('Time (s)')
-        ylabel('a_{4a} (cm)')
+        ylabel('a_{4a} (cm/s²)')
 
         subplot(5,2,4)
         plot(t,ddphi6)
         xlabel('Time (s)')
-        ylabel('\alpha_6 (rad)')
+        ylabel('\alpha_6 (rad/s²)')
 
         subplot(5,2,5)
         plot(t,ddphi7)
         xlabel('Time (s)')
-        ylabel('\alpha_7 (rad)')
+        ylabel('\alpha_7 (rad/s²)')
 
         subplot(5,2,6)
         plot(t,ddphi8)
         xlabel('Time (s)')
-        ylabel('\alpha_8 (rad)')
+        ylabel('\alpha_8 (rad/s²)')
 
         subplot(5,2,7)
         plot(t,ddx9)
         xlabel('Time (s)')
-        ylabel('a_9 (cm)')
+        ylabel('a_9 (cm/s²)')
 
         subplot(5,2,8)
         plot(t,ddphi10)
         xlabel('Time (s)')
-        ylabel('\alpha_{10} (rad)')
+        ylabel('\alpha_{10} (rad/s²)')
 
         subplot(5,2,9)
         plot(t,ddx11)
         xlabel('Time (s)')
-        ylabel('a_{11} (cm)')
+        ylabel('a_{11} (cm/s²)')
 
         subplot(5,2,10)
         plot(t,ddphi12)
         xlabel('Time (s)')
-        ylabel('\alpha_{12} (rad)')
+        ylabel('\alpha_{12} (rad/s²)')
 
 
 end

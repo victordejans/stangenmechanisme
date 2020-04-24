@@ -13,36 +13,26 @@ F1 = r1b*exp(1i*phiAF); % position of F based on direct measurement from point A
 F2 = r2c*exp(1i*(phi2 + phiA)) + r3*exp(1i*phi3) + r4*exp(1i*phi4); % Position of F by travelling from point A to C to D to F
 
 figure
-clf
-hold on
+
+subplot(2,2,1)
 plot(t,real(F1) - real(F2))
-xlabel('[s]')
-ylabel('[cm]')
-title('error X position point F')
+xlabel('Time (s)')
+ylabel('Absolute error in x coordinate of (F) (cm)')
 
-figure
-clf
-hold on
+subplot(2,2,2)
 plot(t,imag(F1) - imag(F2))
-xlabel('[s]')
-ylabel('[cm]')
-title('error Y position point F')
+xlabel('Time (s)')
+ylabel('Absolute error in y coordinate of (F) (cm)')
 
-figure
-clf
-hold on
+subplot(2,2,3)
 plot(t,1 - (real(F2)/real(F1)))
-xlabel('[s]')
-ylabel('[/]')
-title(' Relative error X position point F')
+xlabel('Time (s)')
+ylabel('Relative error in x coordinate of (F) (cm)')
 
-figure
-clf
-hold on
+subplot(2,2,4)
 plot(t,1 - (imag(F2)/imag(F1)))
-xlabel('[s]')
-ylabel('[/]')
-title(' Relative error Y position point F')
+xlabel('Time (s)')
+ylabel('Relative error in y coordinate of (F) (cm)')
 
 % velocity
 
@@ -60,20 +50,16 @@ title(' Relative error Y position point F')
  V_F_y = V_F(:,2); 
  
 figure
-clf
-hold on
-plot(t,V_F_x)
-xlabel('[s]')
-ylabel('[cm/s]')
-title('error X velocity point F')
 
-figure
-clf
-hold on
+subplot(1,2,1)
+plot(t,V_F_x)
+xlabel('Time (s)')
+ylabel('Absolute error in x velocity of (F) (cm/s)')
+
+subplot(1,2,2)
 plot(t,V_F_y)
-xlabel('[s]')
-ylabel('[cm/s]')
-title('error Y velocity point F')
+xlabel('Time (s)')
+ylabel('Absolute error in y velocity of (F) (cm/s)')
 
 % acceleration
 
@@ -87,17 +73,13 @@ title('error Y velocity point F')
  A_F_y = A_F(:,2);
 
 figure
-clf
-hold on
-plot(t,A_F_x)
-xlabel('[s]')
-ylabel('[cm/s^2]')
-title('error X acceleration point F')
 
-figure
-clf
-hold on
+subplot(1,2,1)
+plot(t,A_F_x)
+xlabel('Time (s)')
+ylabel('Absolute error in x acceleration of (F) (cm/s²)')
+
+subplot(1,2,2)
 plot(t,A_F_y)
-xlabel('[s]')
-ylabel('[cm/s^2]')
-title('error Y acceleration point F')
+xlabel('Time (s)')
+ylabel('Absolute error in y acceleration of (F) (cm/s²)')

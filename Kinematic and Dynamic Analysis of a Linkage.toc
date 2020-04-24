@@ -4,10 +4,12 @@
 \contentsline {subsection}{\numberline {1.2}Motion analysis}{3}{subsection.1.2}
 \contentsline {section}{\numberline {2}Kinematic analysis}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Position analysis}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Velocity analysis}{7}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Acceleration analysis}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.2}Velocity analysis}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Acceleration analysis}{6}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Checking the results}{8}{subsection.2.4}
-\contentsline {section}{\numberline {3}Dynamic analysis}{8}{section.3}
-\contentsline {subsection}{\numberline {3.1}Inverse dynamic analysis without gravity}{8}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Inverse dynamic analysis with gravity}{8}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Checking the results}{8}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {2.4.1}Checking the position}{8}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Checking the velocity and the acceleration}{9}{subsubsection.2.4.2}
+\contentsline {section}{\numberline {3}Dynamic analysis}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Inverse dynamic analysis without gravity}{10}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Inverse dynamic analysis with gravity}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Checking the results}{10}{subsection.3.3}
