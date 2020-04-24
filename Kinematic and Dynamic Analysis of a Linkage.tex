@@ -76,13 +76,13 @@ The dimensions of the bars and other bodies are defined in tables~\ref{tab:lengt
 All bodies in this linkage are made of steel which has a density \(\rho_{steel} = 7800~\si{kg/m^3}\) \cite{steel1}.
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{schematic.png}
+	\includegraphics[width=\textwidth]{schematic.jpg}
 	\centering
-	\caption{Schematic representation of the studied linkage. The numbers indicate the 12 bodies. The letters indicate the 16 joints.}
+	\caption{Schematic representation of the studied linkage. The numbers indicate the 12 bodies. The letters indicate the 16 joints. Warning: this figure is not on scale.}
 	\label{fig:schematic}
 \end{figure}
 
-\begin{table}
+\begin{table}[t]
 	\centering
 	\begin{tabular}{lr}
 		\hline
@@ -125,7 +125,7 @@ All bodies in this linkage are made of steel which has a density \(\rho_{steel} 
 \end{table}
 
 
-\begin{figure}
+\begin{figure}[b]
 	\centering
 	
 	\begin{subfigure}[b]{.4\textwidth}
@@ -153,8 +153,6 @@ All bodies in this linkage are made of steel which has a density \(\rho_{steel} 
 
 The Walschaerts valve gear is a twelve bar linkage system with sixteen joints. This makes the mobility \(M=3*(12-1)-16*2=1\). This means the system has one degree of freedom.
 
-
-\newpage
 
 \section{Kinematic analysis}
 \label{sec:kin}
@@ -249,7 +247,7 @@ The MATLAB function \texttt{loop\char`_closure\char`_eqs.m} lists all loop closu
 
 After solving this system for each of the 201 time samples, the MATLAB code returns values for each of the ten unknowns in function of the time. The plots of these ten variables are shown in figure~\ref{fig:kinpos}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	
 	\includegraphics[width = \textwidth]{kinpos.png}
@@ -281,6 +279,8 @@ The MATLAB code solves this system and returns values for the velocities of the 
 	
 \end{figure}
 
+\newpage
+
 \subsection{Acceleration analysis}
 
 The acceleration analysis finds the ten unknown variables \(\diff[2]{\phi_3(t)}{t}\), \(\diff[2]{\phi_4(t)}{t}\), \(\diff[2]{r_{4a}(t)}{t}\), \(\diff[2]{\phi_6(t)}{t}\), \(\diff[2]{\phi_7(t)}{t}\), \(\diff[2]{\phi_8(t)}{t}\), \(\diff[2]{x_9(t)}{t}\), \(\diff[2]{\phi_{10}(t)}{t}\), \(\diff[2]{x_{11}(t)}{t}\) and \(\diff[2]{\phi_{12}(t)}{t}\).
@@ -297,7 +297,6 @@ This happens analogously to the velocity analysis. The MATLAB code now solves a 
 	
 \end{figure}
 
-\clearpage
 
 \subsection{Checking the results}
 
@@ -308,18 +307,18 @@ When writing the equations, there are places where errors can easily sneak in (e
 To check the position, we calculate the position of the joint (F) in two different ways. First, because (F) is a stationary point, it can be calculated via the given distance and angle from (A):
 
 \begin{equation}
-	F1 = r_{1b}*e^{i*\phi_{AF}}
+	\vec{F_1} = r_{1b}*e^{i*\phi_{AF}}
 \end{equation}
 
 The second way is by following a path of consecutive points in the mechanism:
 
 \begin{equation}
-	F2 = r_{2c}*e^{i*(\phi_2 + \phi_A)} + r_3*e^{i*\phi_3} + r_4*e^{i*\phi_4}
+	\vec{F_2} = r_{2c}*e^{i*(\phi_2 + \phi_A)} + r_3*e^{i*\phi_3} + r_4*e^{i*\phi_4}
 \end{equation}
 
-The x and y components of these vectors can be found by taking respectively the real and imaginary part of these complex numbers. The difference between F1 and F2 is plotted in figure \ref{fig:contrpos}. The x and y components match well, there is nothing special to report there. 
+The x and y components of these vectors can be found by taking respectively the real and imaginary part of these complex numbers. The difference between \(\vec{F_1}\) and \(\vec{F_2}\) is plotted in figure \ref{fig:contrpos}. The x and y components match well, there is nothing special to report there. 
 
-The relative error \(1 – F1/F2\) takes on values of the order of \(10^{-12}\) and the absolute error \(F1-F2\) is of the order of \(10^{-10}\) cm. This is not yet near machine precision, so the error is probably a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
+The relative error \(1 – \vec{F_1}/\vec{F_2}\) takes on values of the order of \(10^{-12}\) and the absolute error \(\vec{F_1}-\vec{F_2}\) is of the order of \(10^{-10}\) cm. This is not yet near machine precision, so the error is probably a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
 
 We can also visually inspect the position results by watching an animation of the mechanism. In the animation in the attached MATLAB code \footnote{The animation pops up when running \texttt{main.m} with \texttt{movie\char`_12bar = 1;} on line 22 of the code} one can see that point (F) (like (A) and (E)) doesn’t move.
 
@@ -375,16 +374,238 @@ Figure~\ref{fig:contracc} shows the acceleration error. Once again the x and y c
 
 \section{Dynamic analysis}
 
-\subsection{Inverse dynamic analysis without gravity}
+\subsection{Inverse dynamic analysis}
 
-\subsection{Inverse dynamic analysis with gravity}
+The dynamic analysis determines the 32 internal reaction forces or torques and the driving torque on the wheel. These forces and torques are defined in figure~\ref{fig:dyndef} 
+
+\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width = .77\textwidth]{dyndef.jpg}
+	
+	\caption{Definition of the internal reactions forces and torques.}
+	\label{fig:dyndef}
+	
+\end{figure}
+
+In order to calculate these 33 unknown variables, a linear system of 33 equations is set up. Each of the eleven bodies (without the ground (1)) gives three dynamic equations: one for the forces in the x direction, one for the forces in the y direction and one for the torques around the z axis. The 33 equations can be found below:
+
+\bigskip
+
+Body (2):
+
+\begin{subequations}
+	\begin{equation}
+		F_{A,x} + F_{B,x} + F_{C,x}=m_2*a_{2,x}
+	\end{equation}
+	\begin{equation}
+		F_{A,y} + F_{B,y} + F_{C,y}=m_2*a_{2,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+		-F_{A,x}*|cog_2A|_y+F_{A,y}*|cog_2A|_x+M_{A,z}\\-F_{B,x}*|cog_2B|_y+F_{B,y}*|cog_2B|_x\\-F_{C,x}*|cog_2C|_y+F_{C,y}*|cog_2C|_x\\=I_2*\alpha_2
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (3):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{C,x} + F_{D,x}=m_3*a_{3,x}
+	\end{equation}
+	\begin{equation}
+		-F_{C,y} + F_{D,y}=m_3*a_{3,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+		F_{C,x}*|cog_3C|_y-F_{C,y}*|cog_3C|_x\\-F_{D,x}*|cog_3D|_y+F_{D,y}*|cog_3D|_x\\=I_3*\alpha_3
+		\end{split}
+	\end{equation}
+\end{subequations}
+
+
+Body (4):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{D,x}+F_{F,x}-F_{I,n}*cos(\phi_4)=m_4*a_{4,x}
+	\end{equation}
+	\begin{equation}
+		-F_{D,y}+F_{F,y}+F_{I,n}*sin(\phi_4)=m_4*a_{4,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+		F_{D,x}*|cog_4D|_y-F_{D,y}*|cog_4D|_x\\-F_{F,x}*|cog_4F|_y+F_{F,y}*|cog_4F|_x\\=I_4*\alpha_4
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (5):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{H,x}+F_{I,n}*cos(\phi_4)=m_5*a_{5,x}=0
+	\end{equation}
+	\begin{equation}
+		-F_{H,y}-F_{I,n}*sin(\phi_4)=m_5*a_{5,y}=0
+	\end{equation}
+	\begin{equation}
+		-M_{I,z}=I_5*\alpha_5=0
+	\end{equation}
+\end{subequations}
+
+Body (6):
+
+\begin{subequations}
+	\begin{equation}
+		F_{E,x}+F_{G,x}=m_6*a_{6,x}
+	\end{equation}
+	\begin{equation}
+		F_{E,y}+F_{G,y}=m_6*a_{6,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+		-F_{E,x}*|cog_6E|_y+F_{E,y}*|cog_6E|_x\\-F_{G,x}*|cog_6G|_y+F_{G,y}*|cog_6G|_x\\=I_6*\alpha_6
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (7):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{G,x}+F_{H,x}+F_{J,x}=m_7*a_{7,x}
+	\end{equation}
+	\begin{equation}
+		-F_{G,y}+F_{H,y}+F_{J,y}=m_7*a_{7,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+		F_{G,x}*|cog_7G|_y-F_{G,y}*|cog_7G|_x\\-F_{H,x}*|cog_7H|_y+F_{H,y}*|cog_7H|_x\\-F_{J,x}*|cog_7J|_y+F_{J,y}*|cog_7J|_x\\=I_7*\alpha_7
+		\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (8):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{J,x}+F_{K,x}+F_{M,x}=m_8*a_{8,x}
+	\end{equation}
+	\begin{equation}
+		-F_{J,y}+F_{K,y}+F_{M,y}=m_8*a_{8,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+	F_{J,x}*|cog_8J|_y-F_{J,y}*|cog_8J|_x\\-F_{K,x}*|cog_8K|_y+F_{K,y}*|cog_8K|_x\\-F_{M,x}*|cog_8M|_y+F_{M,y}*|cog_8M|_x\\=I_8*\alpha_8
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (9):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{K,x}=m_9*a_{9,x}
+	\end{equation}
+	\begin{equation}
+		-F_{K,y}+F_{L,y}=m_9*a_{9,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+	F_{K,x}*|cog_{9}K|_y-F_{K,y}*|cog_{9}K|_x\\+F_{L,y}*|cog_{9}L|_x+M_{L,z}\\=I_{9}*\alpha_{9}
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (10):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{M,x}-F_{O,x}=m_{10}*a_{10,x}
+	\end{equation}
+	\begin{equation}
+		-F_{M,y}-F_{O,y}=m_{10}*a_{10,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+	F_{M,x}*|cog_{10}M|_y-F_{M,y}*|cog_{10}M|_x\\F_{O,x}*|cog_{10}O|_y-F_{O,y}*|cog_{10}O|_x\\=I_{10}*\alpha_{10}
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (11):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{N,x}+F_{O,x}=m_{11}*a_{11,x}
+	\end{equation}
+	\begin{equation}
+		-F_{N,y}+F_{O,y}+F_{P,y}=m_{11}*a_{11,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+	F_{N,x}*|cog_{11}N|_y-F_{N,y}*|cog_{11}N|_x\\-F_{O,x}*|cog_{11}O|_y+F_{O,y}*|cog_{11}O|_x\\+F_{P,y}*|cog_{11}P|_x+M_{P,z}\\=I_{11}*\alpha_{11}
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+Body (12):
+
+\begin{subequations}
+	\begin{equation}
+		-F_{B,x}+F_{N,x}=m_{12}*a_{12,x}
+	\end{equation}
+	\begin{equation}
+		-F_{B,y}+F_{N,y}=m_{12}*a_{12,y}
+	\end{equation}
+	\begin{equation}
+	\begin{split}
+	F_{B,x}*|cog_{12}B|_y-F_{B,y}*|cog_{12}B|_x\\-F_{N,x}*|cog_{12}N|_y+F_{N,y}*|cog_{12}N|_x\\=I_{12}*\alpha_{12}
+	\end{split}
+	\end{equation}
+\end{subequations}
+
+The masses of the bodies are \(m_i=V_i*\rho_{steel}\) with \(\rho_{steel}=7800~\si{kg/m^3}\) \cite{steel1}. The linear accelerations of the bars are calculated by multiplicating the angular accelerations with the distance from the joint to the center of gravity of the bar. All these equations are implemented in the MATLAB function \texttt{dynamics\char`_12bar.m}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = .9\textwidth]{dynplot1.png}
+	
+	\caption{Internal reaction forces and torques in function of time (Part 1/2).}
+	\label{fig:dynplot1}
+	
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width = .9\textwidth]{dynplot2.png}
+	
+	\caption{Internal reaction forces and torques in function of time (Part 2/2).}
+	\label{fig:dynplot2}
+	
+\end{figure}
+
+After solving this linear set of equations, the MATLAB code returns values for the 33 forces and torques for each time sample. The plots of these forces and torques in function of the time are listed in figures~\ref{fig:dynplot1},~\ref{fig:dynplot2} and~\ref{fig:dynplot3}.
+
+\begin{figure}[h]
+	\centering
+	
+	\includegraphics[width = \textwidth]{dynplot3.png}
+	
+	\caption{Driving torque in function of time.}
+	\label{fig:dynplot3}
+	
+\end{figure}
 
 \subsection{Checking the results}
 
 For checking the dynamics we make use of the method of shaking forces, in which we determine the reaction forces that act on the ground. These reaction forces are the opposites of the internal forces \(F_A\), \(F_F\) and \(F_E\) . The shaking forces are equal to these reaction forces on the ground: 
 
 \begin{equation}
-	F_{shake,x,1} = F_{A,x} + F{F_x} + F{E,x}
+	F_{shake,x,1} = F_{A,x} + F_{F,x} + F_{E,x}
 \end{equation}
 
 and can also be calculated as follows (for the x components):
@@ -397,11 +618,11 @@ and can also be calculated as follows (for the x components):
 \end{split}
 \end{equation}
 
-
-
 The y components are calculated analogously.
 
-We make the sum over all linkages except for the ground. The error of the shaking forces \(F_{shake,x,1}-F_{shake,x,2}\)is plotted in  figure \ref{fig:contrdyn}. The x and y components match well enough, even though one is one order of magnitude greater than the other. The error is from the order of \(10^{-9} \si{newton}\) for the x component and \(10^{-10} \si{newton}\) for the y component. This error is greater than machine precision, but this is a result of the used math algorithm. The error is small enough to consider this check successful.
+We make the sum over all linkages except for the ground. The error of the shaking forces \(F_{shake,x,1}-F_{shake,x,2}\) is plotted in  figure \ref{fig:contrdyn}. The x and y components match well enough, even though one is one order of magnitude greater than the other. The error is from the order of \(10^{-9}\) Newton for the x component and \(10^{-10}\) Newton for the y component. This error is greater than machine precision, but this is a result of the used math algorithm. The error is small enough to consider this check successful.
+
+\clearpage
 
 \begin{figure}
 	\centering
