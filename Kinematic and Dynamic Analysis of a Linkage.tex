@@ -23,7 +23,7 @@
 
 \date{\today}
 \author{Thomas Brzeski \and  Victor Dejans}
-\title{Kinematic and Dynamic Analysis of a Linkage\\ Walschaerts Valve Gear}
+\title{Kinematic and Dynamic Analysis of a Linkage:\\ Walschaerts Valve Gear}
 
 
 \begin{document}
@@ -49,7 +49,7 @@ The final section reports upon the inverse dynamic analysis which finds the forc
 
 Walschaerts valve gear is a linkage that was used in steam locomotives. It connects the steam pistons and the train's wheels in a way that also regulates the steam flow.
 
-Although in real life the pistons are the driving bodies and the wheels is the driven bodies, the assistants recommended us to analyse the mechanism in the opposite way. In this assignment, the driving torque is thus applied to the wheel instead of the pistons.
+Although in real life the pistons are the driving bodies and the wheels are the driven bodies, the assistants recommended us to analyse the mechanism in the opposite way. In this assignment, the driving torque is thus applied to the wheel instead of the pistons.
 
 \begin{figure}[h]
 	\includegraphics[width=0.9\textwidth]{wvgverslag.png}
@@ -64,11 +64,11 @@ As shown in figure~\ref{fig:schematic}, the linkage has twelve bodies.
 
 \begin{itemize}
 	\item Body \textbf{(1)} is the train. This is the ground to which other bodies are fixed.
-	\item Body \textbf{(2)} is the wheel of the train. Its rotation point (A) is fixed in the origin of the xy-plane. The ends of bars (3) and (12) are eccentrically attached to the wheel with hinges (B) and (C) respectively.
+	\item Body \textbf{(2)} is the wheel of the train. Its rotation point (A) is fixed in the origin of the xy plane. The ends of bars (3) and (12) are eccentrically attached to the wheel with hinges (B) and (C) respectively.
 	\item Bodies \textbf{(3)}, \textbf{(4)}, \textbf{(7)}, \textbf{(8)}, \textbf{(10)} and \textbf{(12)} are straight bars.
 	\item Body \textbf{(5)} is massless and is used to make a special joint between bar (4) and bar (7). It is attached to bar (4) with a prismatic joint (I) and to bar (7) with a hinge (H).
 	\item Bar \textbf{(6)} is a kinked, L-shaped bar which consists of two parts of 95~\si{cm} long that are fixed to each other in an angle of 90~\si{degrees}. The two ends of this L-shaped bar are fixed to the ground (1) and to bar (7) with hinges.
-	\item Bodies \textbf{(9)} and \textbf{(11)} are the pistons of the valve gear. Both pistons are fixed to the ground (1) with prismatic joints ((L) and (P) respectively) that only allow movement in the x-direction. Their dimensions are shown in figure~\ref{fig:pistons}.
+	\item Bodies \textbf{(9)} and \textbf{(11)} are the pistons of the valve gear. Both pistons are fixed to the ground (1) with prismatic joints ((L) and (P) respectively) that only allow movement in the x direction. Their dimensions are shown in figure~\ref{fig:pistons}.
 \end{itemize}
 
 The dimensions of the bars and other bodies are defined in tables~\ref{tab:lengths} and~\ref{tab:angles}.
@@ -120,7 +120,7 @@ All bodies in this linkage are made of steel which has a density \(\rho_{steel} 
 		\text{[AF]} & 37,0188 \\
 		\hline
 	\end{tabular}
-	\caption{Unvariable angles in the linkage's ground. Joints' letters as indicated in figure~\ref{fig:schematic}. Variable angles are calculated in section \ref{sec:kin}}
+	\caption{Unvariable angles in the linkage's ground. Joints' letters as indicated in figure~\ref{fig:schematic}. Variable angles are calculated in section \ref{sec:kin}.}
 	\label{tab:angles}
 \end{table}
 
@@ -162,7 +162,7 @@ In the kinematic analysis we apply a driving torque to the train's wheel (body (
 The driving torque is applied to body (2) in point (A) and makes it turn with a constant angular velocity as defined in equation~\ref{eq:dphi2}, where \(\phi_2(t)\) is the angle that section [AB] of the wheel makes with the positive x axis.
 
 \begin{equation}
-	\phi_2(t) = \pi*t~rad \\
+	\phi_2(t) = (\pi*t)~rad \\
 	\label{eq:phi2}
 \end{equation}
 \begin{equation}
@@ -173,18 +173,18 @@ The driving torque is applied to body (2) in point (A) and makes it turn with a 
 	\diff[2]{\phi_2(t)}{t} = 0~rad/s^2\\
 \end{equation}
 
-The kinematic analysis looks for the positions, velocities and accelerations of the other bodies in the linkage. The ten unknowns are \(\phi_3(t)\), \(\phi_4(t)\), \(r_{4a}(t)\) (the length of the part of bar (4) between joint (D) and joint (I)), \(\phi_6(t)\), \(\phi_7(t)\), \(\phi_8(t)\), \(x_9(t)\) (the x coordinate of joint (K)), \(\phi_{10}(t)\), \(x_{11}(t)\) (the x coordinate of joint (N)) and \(\phi_{12}(t)\) and their first and second order derivatives. The angles are defined in figure~\ref{fig:schematic}.
+The kinematic analysis looks for the positions, velocities and accelerations of the other bodies in the linkage. The ten unknowns are \(\phi_3(t)\), \(\phi_4(t)\), \(r_{4a}(t)\) (the length of the part of bar (4) between joint (D) and joint (I)), \(\phi_6(t)\), \(\phi_7(t)\), \(\phi_8(t)\), \(x_9(t)\) (the x coordinate of joint (K)), \(\phi_{10}(t)\), \(x_{11}(t)\) (the x coordinate of joint (N)) and \(\phi_{12}(t)\) and their first and second order derivatives. These variables are defined in figure~\ref{fig:schematic}.
 
-The analysis is done for 201 time samples of 0,05~s each.
+The analysis is done for 201 time samples of 0,05~seconds each.
 
 \subsection{Position analysis}
 
-In order to find the ten unknown positions, a set of ten "loop closure equations" is solved for each time step. A loop closure equation is the sum of all x or y vector components of linkage bodies that form a closed loop. These sums are all equal to zero. This results in a set of ten equations which are listed below in vector form \footnote{These five vector equations define the ten equations because each vector can be split in one x component and one y component.}.
+In order to find the ten unknown positions, a set of ten "loop closure equations" is solved for each time step. A loop closure equation is the sum of all x or y vector components of linkage bodies that form a closed loop. These sums are all equal to zero. This results in a set of ten equations which are listed below in vector form \footnote{These five vector equations define the ten needed equations. Each vector can be split in one x component and one y component.}.
 
 
 \begin{subequations}
 \begin{equation}
-	\vec{AB}+\vec{CD}+\vec{DF}-\vec{AF}=0
+	\vec{AC}+\vec{CD}+\vec{DF}-\vec{AF}=0
 \end{equation}
 
 \begin{equation}
@@ -263,7 +263,7 @@ After solving this system for each of the 201 time samples, the MATLAB code retu
 
 The velocity analysis finds the ten unknown variables \(\diff{\phi_3(t)}{t}\), \(\diff{\phi_4(t)}{t}\), \(\diff{r_{4a}(t)}{t}\), \(\diff{\phi_6(t)}{t}\), \(\diff{\phi_7(t)}{t}\), \(\diff{\phi_8(t)}{t}\), \(\diff{x_9(t)}{t}\), \(\diff{\phi_{10}(t)}{t}\), \(\diff{x_{11}(t)}{t}\) and \(\diff{\phi_{12}(t)}{t}\).
 
-The first order time derivatives of the loop closure equations~\ref{eq:loopclosurevec} are now used to find the unknown velocities. They are listed in the MATLAB function \texttt{velocity\char`_eqs}. The first order derivative of body (2) is known and is defined in equation~\ref{eq:dphi2}. 
+The first order time derivatives of the loop closure equations~\ref{eq:loopclosurevec} are now used to find these unknown velocities. They are listed in the MATLAB function \texttt{velocity\char`_eqs.m}. The first order derivative of body (2) is known and is defined in equation~\ref{eq:dphi2}. 
 
 The new set of loop closure equations is now linear because the derivative of the multiplication of \(\phi_4(t)\) and \(r_{4a}(t)\) contains no multiplication of the now unknown \(\diff{\phi_4(t)}{t}\) and \(\diff{r_{4a}(t)}{t}\).
 
@@ -285,7 +285,7 @@ The MATLAB code solves this system and returns values for the velocities of the 
 
 The acceleration analysis finds the ten unknown variables \(\diff[2]{\phi_3(t)}{t}\), \(\diff[2]{\phi_4(t)}{t}\), \(\diff[2]{r_{4a}(t)}{t}\), \(\diff[2]{\phi_6(t)}{t}\), \(\diff[2]{\phi_7(t)}{t}\), \(\diff[2]{\phi_8(t)}{t}\), \(\diff[2]{x_9(t)}{t}\), \(\diff[2]{\phi_{10}(t)}{t}\), \(\diff[2]{x_{11}(t)}{t}\) and \(\diff[2]{\phi_{12}(t)}{t}\).
 
-This happens analogously to the velocity analysis. The MATLAB code now solves a linear set of the second order time derivatives of the ten loop closure equations. These are listed in the MATLAB function \texttt{acceleration\char`_eqs}. The plots of the accelerations of the bodies are in figure~\ref{fig:kinacc}.
+This happens analogously to the velocity analysis. The MATLAB code now solves a linear set of the second order time derivatives of the ten loop closure equations. These are listed in the MATLAB function \texttt{acceleration\char`_eqs.m}. The plots of the accelerations of the bodies are shown in figure~\ref{fig:kinacc}.
 
 \begin{figure}[h]
 	\centering
@@ -304,13 +304,13 @@ When writing the equations, there are places where errors can easily sneak in (e
 
 \subsubsection{Checking the position}
 
-To check the position, we calculate the position of the joint (F) in two different ways. First, because (F) is a stationary point, it can be calculated via the given distance and angle from (A):
+To check the position, we calculate the position of the joint (F) in two different ways. First, because (F) is a stationary point, it can be calculated via the given distance and angle to (A):
 
 \begin{equation}
 	\vec{F_1} = r_{1b}*e^{i*\phi_{AF}}
 \end{equation}
 
-The second way is by following a path of consecutive points in the mechanism:
+The second way is by following a path of consecutive points in the mechanism from (A) to (F):
 
 \begin{equation}
 	\vec{F_2} = r_{2c}*e^{i*(\phi_2 + \phi_A)} + r_3*e^{i*\phi_3} + r_4*e^{i*\phi_4}
@@ -318,9 +318,9 @@ The second way is by following a path of consecutive points in the mechanism:
 
 The x and y components of these vectors can be found by taking respectively the real and imaginary part of these complex numbers. The difference between \(\vec{F_1}\) and \(\vec{F_2}\) is plotted in figure \ref{fig:contrpos}. The x and y components match well, there is nothing special to report there. 
 
-The relative error \(1 – \vec{F_1}/\vec{F_2}\) takes on values of the order of \(10^{-12}\) and the absolute error \(\vec{F_1}-\vec{F_2}\) is of the order of \(10^{-10}\) cm. This is not yet near machine precision, so the error is probably a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
+The relative error \(1 – \vec{F_1}/\vec{F_2}\) takes on values of the order of \(10^{-12}\) cm and the absolute error \(\vec{F_1}-\vec{F_2}\) is of the order of \(10^{-10}\) cm. This is not yet near machine precision, so the error is probably a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
 
-We can also visually inspect the position results by watching an animation of the mechanism. In the animation in the attached MATLAB code \footnote{The animation pops up when running \texttt{main.m} with \texttt{movie\char`_12bar = 1;} on line 22 of the code} one can see that point (F) (like (A) and (E)) doesn’t move.
+We can also visually inspect the position results by watching an animation of the mechanism. In the animation in the attached MATLAB code \footnote{The animation pops up when running \texttt{main.m} with \texttt{movie\char`_12bar = 1;} on line 22 of the code.} one can see that point (F) (like (A) and (E)) doesn’t move.
 
 \begin{figure}
 	\centering
@@ -342,7 +342,7 @@ The velocity of point (F) (via (A)) can be calculated as follows:
 	\vec{v_F} = \vec{\omega_2}\times\vec{AC}+ \vec{\omega_3}\times\vec{CD}+ \vec{\omega_4}\times\vec{DF}
 \end{equation}
 
-Figure~\ref{fig:contrvel} presents the error in velocity of point (F). The x and y components match well, there is nothing special to report there. Except for the two deviating values, this error seems to stay perfectly at 0. After zooming in we can see that this error doesn’t perfectly equal 0 but is instead in the order of \(10^{-14} \si{cm/s}\). This is starting to approach machine precision but is still not as precise. Again, the error is a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
+Figure~\ref{fig:contrvel} presents the error in velocity of point (F). The x and y components match well, there is nothing special to report there. Except for the two deviating values, this error seems to stay perfectly at 0. After zooming in we can see that this error doesn’t perfectly equal 0 but is instead in the order of \(10^{-14}~\si{cm/s}\). This is starting to approach machine precision but is still not as precise. Again, the error is a result of using \texttt{fsolve}. The error is small enough to consider this check successful.
 
 The acceleration of point (F) (via (A)) can be calculated as follows:
 
@@ -350,7 +350,7 @@ The acceleration of point (F) (via (A)) can be calculated as follows:
 	\vec{a_F} = \vec{\omega_2}\times(\vec{\omega_2}\times\vec{AC}) + \vec{\alpha_2}\times\vec{AC} + \vec{\omega_3}\times(\vec{\omega_3}\times\vec{CD}) + \vec{\alpha_3}\times\vec{CD} + \vec{\omega_4}\times(\vec{\omega_4}\times\vec{DF}) + \vec{\alpha_4}\times\vec{DF}
 \end{equation}
 
-Figure~\ref{fig:contracc} shows the acceleration error. Once again the x and y components match so there is nothing special to report. The error here is from the order of \(10^{-14} \si{cm/s^2}\). Like with the position and velocity errors, this isn’t machine precision yet but a deviation introduced by \texttt{fsolve}. It’s small enough to consider this check successful.
+Figure~\ref{fig:contracc} shows the acceleration error. Once again the x and y components match so there is nothing special to report. The error here is from the order of \(10^{-14}~\si{cm/s^2}\). Like with the position and velocity errors, this isn’t machine precision yet, but a deviation introduced by \texttt{fsolve}. It is small enough to consider this check successful.
 
 \begin{figure}
 	\centering
@@ -376,7 +376,7 @@ Figure~\ref{fig:contracc} shows the acceleration error. Once again the x and y c
 
 \subsection{Inverse dynamic analysis}
 
-The dynamic analysis determines the 32 internal reaction forces or torques and the driving torque on the wheel. These forces and torques are defined in figure~\ref{fig:dyndef} 
+The dynamic analysis determines the 32 internal reaction forces or torques and the driving torque on the wheel. These forces and torques are defined in figure~\ref{fig:dyndef}.
 
 \begin{figure}[h]
 	\centering
@@ -633,6 +633,10 @@ We make the sum over all linkages except for the ground. The error of the shakin
 	\label{fig:contrdyn}
 	
 \end{figure}
+
+\section*{Conclusion}
+
+This report discusses a kinematic and dynamic analysis of a 12 bar linkage. Both the kinematic and dynamic analysis are very accurate. The errors of the results took on very small values that approach the machine accuracy. These results are clearly precise enough for eventual practical applications.
 
 \bibliographystyle{plain}
 \bibliography{walschaerts}

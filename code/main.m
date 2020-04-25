@@ -17,11 +17,11 @@ clear all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % program data
-fig_kin_12bar = 0;        % draw figures of kinematic analysis if 1
+fig_kin_12bar = 1;        % draw figures of kinematic analysis if 1
 fig_dyn_12bar = 1;        % draw figures of dynamic analysis if 1
-movie_12bar = 0;
-contr_kin_12bar = 0;
-contr_dyn_12bar = 0;
+movie_12bar = 1;
+contr_kin_12bar = 1;
+contr_dyn_12bar = 1;
 
 %link lengths in cm and fixed angles in degrees
 
