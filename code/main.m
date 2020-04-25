@@ -9,7 +9,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-close
+close all
 clear all
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,6 +19,7 @@ clear all
 % program data
 fig_kin_12bar = 1;        % draw figures of kinematic analysis if 1
 fig_dyn_12bar = 1;        % draw figures of dynamic analysis if 1
+movie_12bar = 1;
 contr_kin_12bar = 1;
 contr_dyn_12bar = 1;
 
@@ -70,8 +71,8 @@ z_blokje11 = 40;
 inhoud_blokje11 = x_blokje11 * y_blokje11 * z_blokje11;
 
 straalWiel = 176;
-sgStaal = 7800/10^6; %kg per cm³ (onze afmetingen staan ook in cm)
-doorsnedeStang = 10^2 * pi(); %oppervlak van doorsnede van een stang in cm², veronderstel dat alle stangen evend dik zijn
+sgStaal = 7800/10^6; %kg per cm^3 (onze afmetingen staan ook in cm)
+doorsnedeStang = 10^2 * pi(); %oppervlak van doorsnede van een stang in cm^2, veronderstel dat alle stangen even dik zijn
 
 X2 = 0;
 Y2 = 0;
@@ -163,13 +164,13 @@ number_of_time_samples = length(t);
 
 %initialisation of driver (we drijven het wiel aan)
 omega = pi();
-phi2 = omega*t - 47*pi/180; %phi2 is dus een vector met alle waarden van phi2 op de verschillende tijdstippen. we trekken de initiele hoek phi2_init=47° af.
+phi2 = omega*t - 47*pi/180; %phi2 is dus een vector met alle waarden van phi2 op de verschillende tijdstippen. we trekken de initiele hoek phi2_init=47ï¿½ af.
 dphi2 = omega*ones(number_of_time_samples,1);
 ddphi2 = zeros(number_of_time_samples,1);
 
 [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
     kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar);
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar,movie_12bar);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Dynamic analysis
@@ -179,8 +180,8 @@ ddphi2 = zeros(number_of_time_samples,1);
 %                       I is de prismatische joint van 5 op 4
 %                       K is het scharnier tussen 8 en 9
 %                       L is de prismatische joint van 9 op de grond
-%                       N is het scharnier van 10 op 11
-%                       O is het scharnier van 12 op 11
+%                       N is het scharnier van 12 op 11
+%                       O is het scharnier van 10 op 11
 %                       P is de prismatic van 11 op de grond
 
 [FAx,FAy,MAz,FBx,FBy,FCx,FCy,FDx,FDy,FEx,FEy,FFx,FFy,FGx,FGy,FHx,FHy,FIn,MIz,FJx,FJy,FKx,FKy,FLy,MLz,FMx,FMy,FNx,FNy,FOx,FOy,FPy,MPz]...
@@ -200,11 +201,14 @@ ddphi2 = zeros(number_of_time_samples,1);
 %Movie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure
-load 12bar_movie Movie
-movie(Movie)
+if movie_12bar
 
-% schets van het mechanisme in initiële toestand
-schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
+    figure
+    load 12bar_movie Movie
+    movie(Movie)
 
+    % schets van het mechanisme in initiï¿½le toestand
+    schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
+        phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
+
+end

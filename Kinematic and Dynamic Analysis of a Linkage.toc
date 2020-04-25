@@ -1,0 +1,14 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Definition of the mechanism}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Schematic of the mechanism and definition of the parameters}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Motion analysis}{3}{subsection.1.2}
+\contentsline {section}{\numberline {2}Kinematic analysis}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Position analysis}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Velocity analysis}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Acceleration analysis}{7}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Checking the results}{7}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Checking the position}{7}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Checking the velocity and the acceleration}{8}{subsubsection.2.4.2}
+\contentsline {section}{\numberline {3}Dynamic analysis}{10}{section.3}
+\contentsline {subsection}{\numberline {3.1}Inverse dynamic analysis}{10}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Checking the results}{14}{subsection.3.2}

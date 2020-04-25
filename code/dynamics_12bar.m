@@ -38,10 +38,10 @@ cog4Fy = (r4-X4)*sin(phi4)-Y4*sin(phi4+pi/2);
 cog4Ix = (r4a-X4).*cos(phi4)-Y4*cos(phi4+pi/2);
 cog4Iy = (r4a-X4).*sin(phi4)-Y4*sin(phi4+pi/2);
 
-cog5Hx = -X5*cos(phi4)-Y5*cos(phi4+pi/2);
-cog5Hy = -X5*sin(phi4)-Y5*sin(phi4+pi/2);
-cog5Ix = -X5*cos(phi4)-Y5*cos(phi4+pi/2);
-cog5Iy = -X5*sin(phi4)-Y5*sin(phi4+pi/2);
+cog5Hx = -X5*cos(phi4)-Y5*cos(phi4+pi/2)
+cog5Hy = -X5*sin(phi4)-Y5*sin(phi4+pi/2)
+cog5Ix = -X5*cos(phi4)-Y5*cos(phi4+pi/2)
+cog5Iy = -X5*sin(phi4)-Y5*sin(phi4+pi/2)
 
 cog6Gx = -X6*cos(phi6)-Y6*cos(phi6+pi/2);
 cog6Gy = -X6*sin(phi6)-Y6*sin(phi6+pi/2);
@@ -243,7 +243,7 @@ for k=1:size(t,1)
       -cog2Ay(k) cog2Ax(k)  1 -cog2By(k) cog2Bx(k) -cog2Cy(k) cog2Cx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0 cog3Cy(k) -cog3Cx(k) -cog3Dy(k) cog3Dx(k) 0   0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0    cog4Dy(k) -cog4Dx(k) 0     0 -cog4Fy(k) cog4Fx(k)  0       0    0  0   cos(phi4(k))*cog4Iy(k)+sin(phi4(k))*cog4Ix(k) 1 0 0 0 0     0       0       0       0       0       0       0       0       0       0;
-            0       0       0       0       0       0       0       0       0       0       0       0       0       0  0 cog5Hy(k) -cog5Hx(k) -cos(phi4(k))*cog5Iy(k)-sin(phi4(k))*cog5Ix(k) 1 0 0 0 0 0    0       0       0       0       0       0       0       0       0;
+            0       0       0       0       0       0       0       0       0       0       0       0       0       0  0 cog5Hy(k) -cog5Hx(k) -cos(phi4(k))*cog5Iy(k)-sin(phi4(k))*cog5Ix(k) -1 0 0 0 0 0    0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0  -cog6Ey(k) cog6Ex(k) 0       0 -cog6Gy(k) cog6Gx(k)  0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0 cog7Gy(k) -cog7Gx(k) -cog7Hy(k) cog7Hx(k) 0   0 -cog7Jy(k) cog7Jx(k)  0       0       0       0       0       0       0       0       0       0       0       0;
             0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0 cog8Jy(k) -cog8Jx(k) -cog8Ky(k) cog8Kx(k) 0   0  -cog8My(k) cog8Mx(k) 0       0       0       0       0       0;
@@ -326,44 +326,174 @@ end
 
 if fig_dyn_12bar
 
-    figure
-    plot(FAx,FAy),grid
-    hold on
-    plot(FBx,FBy),grid
-    hold on
-    plot(FCx,FCy),grid
+figure
     
-    figure
-    plot(FDx,FDy),grid
-    hold on
-    plot(FEx,FEy),grid
-    hold on
-    plot(FFx,FFy),grid
-    hold on
-    plot(FGx,FGy),grid
-    hold on
-    plot(FHx,FHy),grid
-    hold on
-    % plot(FIn,MIz),grid
-    % hold on
-    plot(FJx,FJy),grid
-    hold on
-    plot(FKx,FKy),grid
-    hold on
-    % plot(FLy,MLz),grid
-    % hold on
-    plot(FMx,FMy),grid
-    hold on
-    plot(FNx,FNy),grid
-    hold on
-    plot(FOx,FOy),grid
-    % hold on
-    % plot(FPy,MPz),grid
-            
-    figure
+    subplot(8,2,1)
+    plot(t,FAx)
+    xlabel('Time (s)')
+    ylabel('F_{A,x} (N)')
+    
+    subplot(8,2,2)
+    plot(t,FAy)
+    xlabel('Time (s)')
+    ylabel('F_{A,y} (N)')
+    
+    subplot(8,2,3)
+    plot(t,FBx)
+    xlabel('Time (s)')
+    ylabel('F_{B,x} (N)')
+    
+    subplot(8,2,4)
+    plot(t,FBy)
+    xlabel('Time (s)')
+    ylabel('F_{B,y} (N)')
+    
+    subplot(8,2,5)
+    plot(t,FCx)
+    xlabel('Time (s)')
+    ylabel('F_{C,x} (N)')
+    
+    subplot(8,2,6)
+    plot(t,FCy)
+    xlabel('Time (s)')
+    ylabel('F_{C,y} (N)')
+    
+    subplot(8,2,7)
+    plot(t,FDx)
+    xlabel('Time (s)')
+    ylabel('F_{D,x} (N)')
+    
+    subplot(8,2,8)
+    plot(t,FDy)
+    xlabel('Time (s)')
+    ylabel('F_{D,y} (N)')
+    
+    subplot(8,2,9)
+    plot(t,FEx)
+    xlabel('Time (s)')
+    ylabel('F_{E,x} (N)')
+    
+    subplot(8,2,10)
+    plot(t,FEy)
+    xlabel('Time (s)')
+    ylabel('F_{E,y} (N)')
+    
+    subplot(8,2,11)
+    plot(t,FFx)
+    xlabel('Time (s)')
+    ylabel('F_{F,x} (N)')
+    
+    subplot(8,2,12)
+    plot(t,FFy)
+    xlabel('Time (s)')
+    ylabel('F_{F,y} (N)')
+    
+    subplot(8,2,13)
+    plot(t,FGx)
+    xlabel('Time (s)')
+    ylabel('F_{G,x} (N)')
+    
+    subplot(8,2,14)
+    plot(t,FGy)
+    xlabel('Time (s)')
+    ylabel('F_{G,y} (N)')
+    
+    subplot(8,2,15)
+    plot(t,FHx)
+    xlabel('Time (s)')
+    ylabel('F_{H,x} (N)')
+    
+    subplot(8,2,16)
+    plot(t,FHy)
+    xlabel('Time (s)')
+    ylabel('F_{H,y} (N)')
+    
+figure
+    
+    subplot(8,2,1)
+    plot(t,FIn)
+    xlabel('Time (s)')
+    ylabel('F_{I,n} (N)')
+    
+    subplot(8,2,2)
+    plot(t,MIz)
+    xlabel('Time (s)')
+    ylabel('M_{I,z} (Nm)')
+    
+    subplot(8,2,3)
+    plot(t,FJx)
+    xlabel('Time (s)')
+    ylabel('F_{J,x} (N)')
+    
+    subplot(8,2,4)
+    plot(t,FJy)
+    xlabel('Time (s)')
+    ylabel('F_{J,y} (N)')
+    
+    subplot(8,2,5)
+    plot(t,FKx)
+    xlabel('Time (s)')
+    ylabel('F_{K,x} (N)')
+    
+    subplot(8,2,6)
+    plot(t,FKy)
+    xlabel('Time (s)')
+    ylabel('F_{K,y} (N)')
+    
+    subplot(8,2,7)
+    plot(t,FLy)
+    xlabel('Time (s)')
+    ylabel('F_{L,y} (Nm)')
+    
+    subplot(8,2,8)
+    plot(t,MLz)
+    xlabel('Time (s)')
+    ylabel('M_{L,z} (Nm)')
+    
+    subplot(8,2,9)
+    plot(t,FMx)
+    xlabel('Time (s)')
+    ylabel('F_{M,x} (N)')
+    
+    subplot(8,2,10)
+    plot(t,FMy)
+    xlabel('Time (s)')
+    ylabel('F_{M,y} (N)')
+    
+    subplot(8,2,11)
+    plot(t,FNx)
+    xlabel('Time (s)')
+    ylabel('F_{N,x} (N)')
+    
+    subplot(8,2,12)
+    plot(t,FNy)
+    xlabel('Time (s)')
+    ylabel('F_{N,y} (N)')
+    
+    subplot(8,2,13)
+    plot(t,FOx)
+    xlabel('Time (s)')
+    ylabel('F_{O,x} (N)')
+    
+    subplot(8,2,14)
+    plot(t,FOy)
+    xlabel('Time (s)')
+    ylabel('F_{O,y} (N)')
+    
+    subplot(8,2,15)
+    plot(t,FPy)
+    xlabel('Time (s)')
+    ylabel('F_{P,y} (N)')
+    
+    subplot(8,2,16)
+    plot(t,MPz)
+    xlabel('Time (s)')
+    ylabel('M_{P,z} (Nm)')
+    
+figure
     plot(t,MAz)
-    ylabel('M_P [N-m]')
-    xlabel('t [s]')
+    xlabel('Time (s)')
+    ylabel('Driving torque M_{A,z} (Nm)')
 
 end
 

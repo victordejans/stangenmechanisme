@@ -2,9 +2,10 @@
 % Een file exclusief gebruikt om een schets te maken van ons mechanisme in
 % initiële toestand ter referentie.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,...
+function schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
     phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,t,fig_kin_12bar)
 
+    r8 = r8a + r8b;
     A = 0;
     %warning("we gebruiken de eerste stap van phi2, dus -47°")
     B = r2b*exp(1i*phi2(1));
@@ -14,10 +15,11 @@ function schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,
     F = r1b*exp(1i*phiAF);
     G = E - r6*exp(1i*phi6_init);
     H = G + r7a*exp(1i*phi7_init);
-    J = H + r7b*exp(1i*phi7_init);
     N = B + r12*exp(1i*phi12_init);
     M = N + r10*exp(1i*phi10_init);
     K = M + r8b*exp(1i*phi8_init);
+    J = M + r8*exp(1i*phi8_init);
+    O = N + r11*exp(1i*phi11);
     
     % Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
     % This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
@@ -35,7 +37,7 @@ function schets_mechanisme(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r10,r12,
     movie_axes = axis;   %save current axes into movie_axes
     clf
     
-    assembly=[A, B, C, A, C, D, H, F, H, G, E, G, J, K, M, N, B]; %de volgorde lijkt mss wat raar, maar dan zijn de verbindingslijnen op de plot zoals de staven in het reëele mechanisme
+    assembly=[A, B, C, A, C, D, H, F, H, G, E, G, J, K, M, O, N, B]; %de volgorde lijkt mss wat raar, maar dan zijn de verbindingslijnen op de plot zoals de staven in het reëele mechanisme
     plot(real(assembly),imag(assembly),'ro-')
     xlabel('[cm]')
     ylabel('[cm]')

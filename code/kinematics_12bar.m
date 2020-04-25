@@ -1,6 +1,6 @@
 function [phi3,phi4,phi6,phi7,phi8,phi10,phi12,x9,x11,r4a,dphi3,dphi4,dphi6,dphi7,dphi8,dphi10,dphi12,dx9,dx11,dr4a,ddphi3,ddphi4,ddphi6,ddphi7,ddphi8,ddphi10,ddphi12,ddx9,ddx11,ddr4a] = ...
     kinematics_12bar(r1a,r1b,r2a,r2b,r2c,r3,r4,r6,r7a,r7b,r8a,r8b,r8,r10,r11,r12,y9,y11,phiA,phiB,phiC,phiAE,phiAF,phi11,...
-    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar)
+    phi2,dphi2,ddphi2,phi3_init,phi4_init,phi6_init,phi7_init,phi8_init,phi10_init,phi12_init,x9_init,x11_init,r4a_init,t,fig_kin_12bar,contr_kin_12bar,movie_12bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
 % copy the vector each time we add an element).
@@ -146,9 +146,173 @@ for k=1:t_size
 end % loop over positions
 
 
+
+if fig_kin_12bar
+    
+    figure
+    
+        subplot(5,2,1)
+        plot(t,phi3)
+        xlabel('Time (s)')
+        ylabel('\phi_3 (rad)')
+
+        subplot(5,2,2)
+        plot(t,phi4)
+        xlabel('Time (s)')
+        ylabel('\phi_4 (rad)')
+
+        subplot(5,2,3)
+        plot(t,r4a)
+        xlabel('Time (s)')
+        ylabel('r_{4a} (cm)')
+
+        subplot(5,2,4)
+        plot(t,phi6)
+        xlabel('Time (s)')
+        ylabel('\phi_6 (rad)')
+
+        subplot(5,2,5)
+        plot(t,phi7)
+        xlabel('Time (s)')
+        ylabel('\phi_7 (rad)')
+
+        subplot(5,2,6)
+        plot(t,phi8)
+        xlabel('Time (s)')
+        ylabel('\phi_8 (rad)')
+
+        subplot(5,2,7)
+        plot(t,x9)
+        xlabel('Time (s)')
+        ylabel('x_9 (cm)')
+
+        subplot(5,2,8)
+        plot(t,phi10)
+        xlabel('Time (s)')
+        ylabel('\phi_{10} (rad)')
+
+        subplot(5,2,9)
+        plot(t,x11)
+        xlabel('Time (s)')
+        ylabel('x_{11} (cm)')
+
+        subplot(5,2,10)
+        plot(t,phi12)
+        xlabel('Time (s)')
+        ylabel('\phi_{12} (rad)')
+
+    figure
+    
+        subplot(5,2,1)
+        plot(t,dphi3)
+        xlabel('Time (s)')
+        ylabel('\omega_3 (rad/s)')
+
+        subplot(5,2,2)
+        plot(t,dphi4)
+        xlabel('Time (s)')
+        ylabel('\omega_4 (rad/s)')
+
+        subplot(5,2,3)
+        plot(t,dr4a)
+        xlabel('Time (s)')
+        ylabel('v_{4a} (cm/s)')
+
+        subplot(5,2,4)
+        plot(t,dphi6)
+        xlabel('Time (s)')
+        ylabel('\omega_6 (rad/s)')
+
+        subplot(5,2,5)
+        plot(t,dphi7)
+        xlabel('Time (s)')
+        ylabel('\omega_7 (rad/s)')
+
+        subplot(5,2,6)
+        plot(t,dphi8)
+        xlabel('Time (s)')
+        ylabel('\omega_8 (rad/s)')
+
+        subplot(5,2,7)
+        plot(t,dx9)
+        xlabel('Time (s)')
+        ylabel('v_9 (cm/s)')
+
+        subplot(5,2,8)
+        plot(t,dphi10)
+        xlabel('Time (s)')
+        ylabel('\omega_{10} (rad/s)')
+
+        subplot(5,2,9)
+        plot(t,dx11)
+        xlabel('Time (s)')
+        ylabel('v_{11} (cm/s)')
+
+        subplot(5,2,10)
+        plot(t,dphi12)
+        xlabel('Time (s)')
+        ylabel('\omega_{12} (rad/s)')
+
+    figure
+        
+        subplot(5,2,1)
+        plot(t,ddphi3)
+        xlabel('Time (s)')
+        ylabel('\alpha_3 (rad/s²)')
+
+        subplot(5,2,2)
+        plot(t,ddphi4)
+        xlabel('Time (s)')
+        ylabel('\alpha_4 (rad/s²)')
+
+        subplot(5,2,3)
+        plot(t,ddr4a)
+        xlabel('Time (s)')
+        ylabel('a_{4a} (cm/s²)')
+
+        subplot(5,2,4)
+        plot(t,ddphi6)
+        xlabel('Time (s)')
+        ylabel('\alpha_6 (rad/s²)')
+
+        subplot(5,2,5)
+        plot(t,ddphi7)
+        xlabel('Time (s)')
+        ylabel('\alpha_7 (rad/s²)')
+
+        subplot(5,2,6)
+        plot(t,ddphi8)
+        xlabel('Time (s)')
+        ylabel('\alpha_8 (rad/s²)')
+
+        subplot(5,2,7)
+        plot(t,ddx9)
+        xlabel('Time (s)')
+        ylabel('a_9 (cm/s²)')
+
+        subplot(5,2,8)
+        plot(t,ddphi10)
+        xlabel('Time (s)')
+        ylabel('\alpha_{10} (rad/s²)')
+
+        subplot(5,2,9)
+        plot(t,ddx11)
+        xlabel('Time (s)')
+        ylabel('a_{11} (cm/s²)')
+
+        subplot(5,2,10)
+        plot(t,ddphi12)
+        xlabel('Time (s)')
+        ylabel('\alpha_{12} (rad/s²)')
+
+
+end
+
+
+
 % *** create movie ***
 
-if fig_kin_12bar == 1
+if movie_12bar == 1
 
     % Movie
 
